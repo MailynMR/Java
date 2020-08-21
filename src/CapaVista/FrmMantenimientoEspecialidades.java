@@ -236,13 +236,13 @@ public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +283,7 @@ public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
         //Llena la tabla con los Departamentos que se grabaron en el ArrayList
 
         this.tablaModelo.setRowCount(0);//Limpia la tabla
-        Object[] datos = new Object[2];
+        Object[] datos = new Object[3];
         ArrayList<MantenimientoEspecialidades> lista = new ArrayList<MantenimientoEspecialidades>();
         try {
             lista = MantenimientoEspecialidades.arrayEspecialidad(); //Invoca al método que retorna una ArrayList de Departamentos
