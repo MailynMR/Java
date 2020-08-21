@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package CapaVista;
 
-/**
- *
- * @author Mailyn Madrigal
- */
-public class MantenimientoEspecialidades extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MantenimientoEspecialidades
-     */
-    public MantenimientoEspecialidades() {
+public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
+
+   
+    public FrmMantenimientoEspecialidades() {
         initComponents();
     }
 
@@ -27,6 +18,14 @@ public class MantenimientoEspecialidades extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jToolBar2 = new javax.swing.JToolBar();
+        jBtnGuardar1 = new javax.swing.JButton();
+        jBtnModificar1 = new javax.swing.JButton();
+        jBtnEliminar1 = new javax.swing.JButton();
+        jBtnConsultar1 = new javax.swing.JButton();
+        jBtnCancelar1 = new javax.swing.JButton();
+        jBtnSalir1 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jBtnGuardar = new javax.swing.JButton();
         jBtnModificar = new javax.swing.JButton();
@@ -34,6 +33,108 @@ public class MantenimientoEspecialidades extends javax.swing.JFrame {
         jBtnConsultar = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
         jBtnSalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jToolBar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToolBar2.setRollover(true);
+
+        jBtnGuardar1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jBtnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Salvar_Disco2.png"))); // NOI18N
+        jBtnGuardar1.setText("Guardar");
+        jBtnGuardar1.setFocusable(false);
+        jBtnGuardar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnGuardar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardar1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jBtnGuardar1);
+
+        jBtnModificar1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jBtnModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Modificar.png"))); // NOI18N
+        jBtnModificar1.setText("Modificar");
+        jBtnModificar1.setFocusable(false);
+        jBtnModificar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnModificar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnModificar1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jBtnModificar1);
+
+        jBtnEliminar1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jBtnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.jpg"))); // NOI18N
+        jBtnEliminar1.setText("Eliminar");
+        jBtnEliminar1.setFocusable(false);
+        jBtnEliminar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnEliminar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminar1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jBtnEliminar1);
+
+        jBtnConsultar1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jBtnConsultar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Consultar.png"))); // NOI18N
+        jBtnConsultar1.setText("Consultar");
+        jBtnConsultar1.setFocusable(false);
+        jBtnConsultar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnConsultar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnConsultar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnConsultar1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jBtnConsultar1);
+
+        jBtnCancelar1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jBtnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
+        jBtnCancelar1.setText("Cancelar");
+        jBtnCancelar1.setFocusable(false);
+        jBtnCancelar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnCancelar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelar1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jBtnCancelar1);
+
+        jBtnSalir1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jBtnSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jBtnSalir1.setText("Salir");
+        jBtnSalir1.setFocusable(false);
+        jBtnSalir1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnSalir1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalir1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jBtnSalir1);
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(120, Short.MAX_VALUE))
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(320, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +219,17 @@ public class MantenimientoEspecialidades extends javax.swing.JFrame {
         });
         jToolBar1.add(jBtnSalir);
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número", "Nombre Doctor", "Especialidad"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,13 +238,19 @@ public class MantenimientoEspecialidades extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(120, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -232,6 +350,30 @@ public class MantenimientoEspecialidades extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBtnSalirActionPerformed
 
+    private void jBtnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnGuardar1ActionPerformed
+
+    private void jBtnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnModificar1ActionPerformed
+
+    private void jBtnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnEliminar1ActionPerformed
+
+    private void jBtnConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnConsultar1ActionPerformed
+
+    private void jBtnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnCancelar1ActionPerformed
+
+    private void jBtnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnSalir1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,31 +391,42 @@ public class MantenimientoEspecialidades extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientoEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MantenimientoEspecialidades().setVisible(true);
+                new FrmMantenimientoEspecialidades().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnCancelar1;
     private javax.swing.JButton jBtnConsultar;
+    private javax.swing.JButton jBtnConsultar1;
     private javax.swing.JButton jBtnEliminar;
+    private javax.swing.JButton jBtnEliminar1;
     private javax.swing.JButton jBtnGuardar;
+    private javax.swing.JButton jBtnGuardar1;
     private javax.swing.JButton jBtnModificar;
+    private javax.swing.JButton jBtnModificar1;
     private javax.swing.JButton jBtnSalir;
+    private javax.swing.JButton jBtnSalir1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     // End of variables declaration//GEN-END:variables
 }
