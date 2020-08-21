@@ -14,14 +14,11 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import org.omg.PortableInterceptor.DISCARDING;
 
-/**
- *
- * @author Mailyn Madrigal
- */
+
 public class DireccionMantenimientoEspecialidadesMedicas {
      private final String RUTA_ARCHIVO =
             System.getProperty("user.dir")+
-            "\\src\\Archivo\\Catalogo_Especialidades_Medica.txt";
+            "\\src\\Archivo\\Direccion_Catalogo_Especialidades_Medica.txt";
   
     
     //Objeto para abrir archivo y grabar 
