@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import org.omg.PortableInterceptor.DISCARDING;
 
 /**
  *
@@ -202,20 +203,20 @@ public class DireccionMantenimientoEspecialidadesMedicas {
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-      public void modificarMantenimientoEspecialidad(DireccionMantenimientoEspecialidadesMedicas mantenimiento) throws Exception{
-        arrayDireccion= new ArrayList<DireccionMantenimientoEspecialidadesMedicas>();
+      public void modificarDireccion(String direccion) throws Exception{
+        arrayDireccion= new ArrayList<Direccion>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             DireccionMantenimientoEspecialidadesMedicas direccion=null;
+             Direccion direccion1=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 direccion = (DireccionMantenimientoEspecialidadesMedicas)oLector.readObject(); 
-                 if(direccion.getClass().equals(direccion.getClass())) {
-                   direccion=mantenimiento;
+                 direccion1 = (Direccion)oLector.readObject(); 
+                if(!direccion1.getProvincia().equalsIgnoreCase(direccion)) {
+                  arrayDireccion.add(direccion1);
                  }
-                 arrayDireccion.add(direccion);
+                 
              }  
         }
         catch(Exception ex){
@@ -230,17 +231,17 @@ public class DireccionMantenimientoEspecialidadesMedicas {
     
     
     
-    public void eliminarMantenimientoEspec(String identificador) throws Exception {
-        arrayDireccion = new ArrayList<MantenimientodeEspecialidadesMédicas>();
+    public void eliminarDireccion(String direccion) throws Exception {
+        arrayDireccion = new ArrayList<Direccion>();
         try {            
             abrirArchivoInput();
-            MantenimientodeEspecialidadesMédicas mantenimiento1 = null;
+            Direccion direccion1 = null;
             //Pasa al ArrayList temporal todos los departamentos cuyo código es 
             //diferente al del departamento que se recibe como parámetro
             while(true){
-                 mantenimiento1 = (MantenimientodeEspecialidadesMédicas)oLector.readObject();               
-                 if(!mantenimiento1.getIdentificador().equalsIgnoreCase(identificador)) {
-                     arrayMantenimientodeEspecialidadesMédicas.add(mantenimiento1);
+                 direccion1 = (Direccion)oLector.readObject();               
+                 if(!direccion1.getProvincia().equalsIgnoreCase(direccion)) {
+                     arrayDireccion.add(direccion1);
                  }
              }                       
         }catch(Exception e){      
@@ -261,11 +262,11 @@ public class DireccionMantenimientoEspecialidadesMedicas {
           if(archivoOriginal.exists()){
             archivoOriginal.delete();
           }  
-          if(!arrayMantenimientodeEspecialidadesMédicas.isEmpty()){
+          if(!arrayDireccion.isEmpty()){
              abrirArchivoOutput();
           //Pasa todos los departamentos del ArrayList al archivo
-            for (MantenimientodeEspecialidadesMédicas mantenimiento : arrayMantenimientodeEspecialidadesMédicas) {
-             oEscritor.writeObject(mantenimiento);       
+            for (Direccion direccion : arrayDireccion) {
+             oEscritor.writeObject(direccion);       
             }     
           }
           cerrarArchivoOutput();
