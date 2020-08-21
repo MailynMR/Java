@@ -38,9 +38,11 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTxtCodigo = new javax.swing.JTextField();
-        jTxtNombre = new javax.swing.JTextField();
+        jTxtEspecialidad = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jTxtNombreDoctor = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -52,7 +54,7 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
 
         jLabel1.setText("Código");
 
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Especialidad");
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,23 +70,30 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setText("Nombre Doctor");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTxtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAceptar)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,12 +105,16 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jTxtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -112,23 +125,23 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
         switch (tipoMantenimiento) {
             case AGREGAR:
                 jTxtCodigo.setEditable(true);
-                jTxtNombre.setEditable(true);
+                jTxtEspecialidad.setEditable(true);
                 setTitle("Nueva Especialidad");
                 break;
             case MODIFICAR:
                 jTxtCodigo.setEditable(false);
-                jTxtNombre.setEditable(true);
-                jTxtNombre.selectAll();
+                jTxtEspecialidad.setEditable(true);
+                jTxtEspecialidad.selectAll();
                 setTitle("Modificar Especialidad");
                 break;
             case CONSULTAR:
                 jTxtCodigo.setEditable(false);
-                jTxtNombre.setEditable(false);
+                jTxtEspecialidad.setEditable(false);
                 setTitle("Consulta de una Especialidad");
                 break;
         }
         jTxtCodigo.setText(codigoCiudad);
-        jTxtNombre.setText("");
+        jTxtEspecialidad.setText("");
         try {
         especialidadBuscar = MantenimientoEspecialidades.consultaEspecialidades(codigoCiudad);
         } catch (Exception e) {
@@ -136,18 +149,19 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
                 e.toString() + "\n" + e.getMessage());
         }  
         if(especialidadBuscar != null){
-            jTxtNombre.setText(especialidadBuscar.getEspecialidad());
+            jTxtEspecialidad.setText(especialidadBuscar.getEspecialidad());
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         //Obtiene los datos para la actualización
-        String cod = jTxtCodigo.getText();
-        String nombre = jTxtNombre.getText();
+        String codigo = jTxtCodigo.getText();
+        String doctor = jTxtNombreDoctor.getText();
+        String especialidad = jTxtEspecialidad.getText();
        
         //Actualiza el Departamento static del FrmDepartamento
         //para que cuando regrese lo agregue o modifique
-         FrmMantenimientoEspecialidades.setCiudadMantenimiento(new MantenimientoEspecialidades(cod,nombre)); 
+         FrmMantenimientoEspecialidades.setEspecialidadesMantenimiento(new MantenimientoEspecialidades(codigo, doctor, especialidad));
        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -164,7 +178,9 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
     javax.swing.JButton btnCancelar;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel3;
     javax.swing.JTextField jTxtCodigo;
-    javax.swing.JTextField jTxtNombre;
+    javax.swing.JTextField jTxtEspecialidad;
+    javax.swing.JTextField jTxtNombreDoctor;
     // End of variables declaration//GEN-END:variables
 }

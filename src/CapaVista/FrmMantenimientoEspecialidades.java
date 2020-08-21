@@ -1,4 +1,3 @@
-
 package CapaVista;
 
 import CapaLogicaNegocios.MantenimientoEspecialidades;
@@ -6,12 +5,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
 
-   private DefaultTableModel tablaModelo;
-   private static MantenimientoEspecialidades especialidadesMantenimiento= null;
-    
+    private DefaultTableModel tablaModelo;
+    private static MantenimientoEspecialidades especialidadesMantenimiento = null;
+
     public FrmMantenimientoEspecialidades() {
         initComponents();
         tablaModelo = (DefaultTableModel) jTblEspecialidad.getModel();
@@ -228,7 +226,7 @@ public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número", "Nombre Doctor", "Especialidad"
+                "Código", "Especialidad", "Nombre del Doctor"
             }
         ));
         jScrollPane1.setViewportView(jTblEspecialidad);
@@ -266,12 +264,12 @@ public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
         dlgCiudad.setLocationRelativeTo(null);
         dlgCiudad.setVisible(true);
         //Cuando regresa del JDialog debe traer el departamento a agregar
-        if(this.especialidadesMantenimiento!= null){
+        if (this.especialidadesMantenimiento != null) {
             //Agrega el departamento al archivo
             try {
                 MantenimientoEspecialidades.agregarEspecialidad(especialidadesMantenimiento); //Agrega el departamento al archivo
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,"Error al grabar el Especialidad "+ "\n"+ ex.toString()+ "\n"+ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al grabar el Especialidad " + "\n" + ex.toString() + "\n" + ex.getMessage());
                 return;
             }
 
@@ -284,76 +282,103 @@ public class FrmMantenimientoEspecialidades extends javax.swing.JFrame {
         //Llama al método que llena la lista con los Departamentos del ArrayList
         //Llena la tabla con los Departamentos que se grabaron en el ArrayList
 
-     this.tablaModelo.setRowCount(0);//Limpia la tabla
-    Object[] datos = new Object[2];
-    ArrayList<MantenimientoEspecialidades> lista= new ArrayList<MantenimientoEspecialidades>();
-     try {
-     lista = MantenimientoEspecialidades.arrayEspecialidad(); //Invoca al método que retorna una ArrayList de Departamentos
-     } catch (Exception e) {
+        this.tablaModelo.setRowCount(0);//Limpia la tabla
+        Object[] datos = new Object[2];
+        ArrayList<MantenimientoEspecialidades> lista = new ArrayList<MantenimientoEspecialidades>();
+        try {
+            lista = MantenimientoEspecialidades.arrayEspecialidad(); //Invoca al método que retorna una ArrayList de Departamentos
+        } catch (Exception e) {
+        }
+        for (int i = 0; i < lista.size(); i++) {
+            datos[0] = lista.get(i).getCodigo();
+            datos[1] = lista.get(i).getEspecialidad();
+            datos[2] = lista.get(i).getDoctor();
+            tablaModelo.addRow(datos); //Agrega el arreglo como una nueva fila de la tabla
+        }
     }
-    for (int i = 0; i < lista.size(); i++) {
-    datos[0] = lista.get(i).getCodigo();
-    datos[1] = lista.get(i).getNombre();
-    tablaModelo.addRow(datos); //Agrega el arreglo como una nueva fila de la tabla
-  }
-  }
+
+
+    public static MantenimientoEspecialidades getEspecialidadesMantenimiento() {
+        return especialidadesMantenimiento;
+    }
+
+    public static void setEspecialidadesMantenimiento(MantenimientoEspecialidades especialidadesMantenimiento) {
+        FrmMantenimientoEspecialidades.especialidadesMantenimiento = especialidadesMantenimiento;
+    }
     
     
+
+    private void activarBotonesModificarEliminar() {
+        jBtnGuardar.setEnabled(false);
+        jBtnEliminar.setEnabled(true);
+        jBtnModificar.setEnabled(true);
+        jBtnCancelar.setEnabled(true);
+    }
+
+    private void desactivarBotonesModificarEliminar() {
+        jBtnGuardar.setEnabled(true);
+        jBtnEliminar.setEnabled(false);
+        jBtnModificar.setEnabled(false);
+        jBtnCancelar.setEnabled(false);
+    }
+
+    private void limpiar() {
+        desactivarBotonesModificarEliminar();
+    }
     private void jBtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarActionPerformed
 
-        if(jTblEspecialidad.getSelectedRow()>= 0){
-            String codigo = jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(),0).toString();
-            JDlgEspecialidad dlgEspecialidad =
-            new JDlgEspecialidad( codigo, TipoMantenimientoEspecialidad.MODIFICAR);//OJO se envía al contructor del JDialog el código del depto
+        if (jTblEspecialidad.getSelectedRow() >= 0) {
+            String codigo = jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(), 0).toString();
+            JDlgEspecialidad dlgEspecialidad
+                    = new JDlgEspecialidad(codigo, TipoMantenimientoEspecialidad.MODIFICAR);//OJO se envía al contructor del JDialog el código del depto
             dlgEspecialidad.setModal(true);//Indica que no se puede pasar a la ventana anterior mientras no se cierre esta
             dlgEspecialidad.setLocationRelativeTo(null);
             dlgEspecialidad.setVisible(true);
             //Cuando regresa del JDialog debe traer el departamento con los atributos modificados
-            if(this.especialidadesMantenimiento!= null){
+            if (this.especialidadesMantenimiento != null) {
                 //Modifica el departamento de la lista
                 try {
                     MantenimientoEspecialidades.modificarEspecialiadad(especialidadesMantenimiento);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null,"Error al modificar la ciudad"+ "\n"+ ex.toString());
+                    JOptionPane.showMessageDialog(null, "Error al modificar la ciudad" + "\n" + ex.toString());
                     return;
                 }
 
                 llenaTablaEspecialidad(); //actualiza la tabla con el nuevo departamento
             }
-            jTblEspecialidad.clearSelection(); ;
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Debe seleccionar la ciudad a modificar");
+            jTblEspecialidad.clearSelection();;
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar la ciudad a modificar");
             return;
         }
     }//GEN-LAST:event_jBtnModificarActionPerformed
 
     private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
         // TODO add your handling code here:
-        if(jTblEspecialidad.getSelectedRow()==-1){
-            JOptionPane.showMessageDialog(null,"Debe seleccionar la ciudad a eliminar");
-            return; }
-        String codigo =
-        jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(),0).toString();
+        if (jTblEspecialidad.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar la ciudad a eliminar");
+            return;
+        }
+        String codigo
+                = jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(), 0).toString();
         try {
             MantenimientoEspecialidades.eliminarEspecialidad(codigo);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Error al eliminar la Especialidad"+ "\n"+ ex.toString());
+            JOptionPane.showMessageDialog(null, "Error al eliminar la Especialidad" + "\n" + ex.toString());
         }
         llenaTablaEspecialidad(); //actualiza la tabla con el nuevo departamento
 
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-        if(jTblEspecialidad.getSelectedRow()>= 0){
-            String codigo = jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(),0).toString();
-            JDlgEspecialidad dlgCiudad = new JDlgEspecialidad(codigo, TipoMantenimientoEspecialidad.CONSULTAR);//OJO se envía al contructor del JDialog el código del depto
-            dlgCiudad.setModal(true);//Indica que no se puede pasar a la ventana anterior mientras no se cierre esta
-            dlgCiudad.setLocationRelativeTo(null);
-            dlgCiudad.setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Debe seleccionar la ciudad a consultar");
+        if (jTblEspecialidad.getSelectedRow() >= 0) {
+            String codigo = jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(), 0).toString();
+            JDlgEspecialidad dlgEspecialidad = new JDlgEspecialidad(codigo, TipoMantenimientoEspecialidad.CONSULTAR);//OJO se envía al contructor del JDialog el código del depto
+            dlgEspecialidad.setModal(true);//Indica que no se puede pasar a la ventana anterior mientras no se cierre esta
+            dlgEspecialidad.setLocationRelativeTo(null);
+            dlgEspecialidad.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar la especialidad a consultar");
             return;
         }
         jTblEspecialidad.clearSelection();
