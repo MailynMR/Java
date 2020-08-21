@@ -32,7 +32,7 @@ public class DireccionMantenimientoEspecialidadesMedicas {
     private FileOutputStream archivoSalida;
     
     
-    private ArrayList<Direccion> arrayDireccionMantenimientodeEspecialidadesMédicas;
+    private ArrayList<Direccion> arrayDireccion;
     
     //Instancia privada de la misma clase
     //implementa el patrón Singleton
@@ -149,7 +149,7 @@ public class DireccionMantenimientoEspecialidadesMedicas {
 
    //Busca y retorna el objeto Departamento de acuerdo al código que recibe como 
    //parámetro, en caso de que no lo encuentre retorna null
-    public Direccion consultarMantenimiento(String identificador)throws Exception {
+    public Direccion consultarMantenimiento(String provincia)throws Exception {
         Direccion mantenimiento;
         Direccion mantenimientoBuscado = null;
         try {
@@ -157,7 +157,7 @@ public class DireccionMantenimientoEspecialidadesMedicas {
             //Si no hay más datos que leer el método available retorna cero
              while(true){
                 mantenimiento = (Direccion)oLector.readObject();               
-                if(mantenimiento.getIdentificador().equalsIgnoreCase(identificador)) {
+                if(mantenimiento.getProvincia().equalsIgnoreCase(provincia)) {
                 } else {
                     mantenimientoBuscado = mantenimiento;
                 }
@@ -177,12 +177,12 @@ public class DireccionMantenimientoEspecialidadesMedicas {
      * @param mantenimiento Objeto MantenimientodeEspecialidadesMédicas a agregar
      * @return void
      */
-    public  void agregarMantenimientoEsp(MantenimientodeEspecialidadesMédicas mantenimiento)throws Exception {        
+    public  void agregarMantenimientoEsp(Direccion direccion)throws Exception {        
         try {
             this.abrirArchivoOutput();
             if (oEscritor != null) {
               //Ejecutar la escritura del objeto pDepartamento en el archivo
-               oEscritor.writeObject(mantenimiento);
+               oEscritor.writeObject(direccion);
                oEscritor.flush();  //Envía el contenido del buffer al archivo
                oEscritor.reset();//Se requiere para cuando se reciben subclases de Departamento
             }
@@ -202,20 +202,20 @@ public class DireccionMantenimientoEspecialidadesMedicas {
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-      public void modificarMantenimientoEspecialidad(MantenimientodeEspecialidadesMédicas mantenimiento) throws Exception{
-        arrayMantenimientodeEspecialidadesMédicas= new ArrayList<MantenimientodeEspecialidadesMédicas>();
+      public void modificarMantenimientoEspecialidad(DireccionMantenimientoEspecialidadesMedicas mantenimiento) throws Exception{
+        arrayDireccion= new ArrayList<DireccionMantenimientoEspecialidadesMedicas>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             MantenimientodeEspecialidadesMédicas mantenimiento1=null;
+             DireccionMantenimientoEspecialidadesMedicas direccion=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 mantenimiento1 = (MantenimientodeEspecialidadesMédicas)oLector.readObject(); 
-                 if(mantenimiento1.getIdentificador().equalsIgnoreCase(mantenimiento1.getIdentificador())) {
-                   mantenimiento1=mantenimiento;
+                 direccion = (DireccionMantenimientoEspecialidadesMedicas)oLector.readObject(); 
+                 if(direccion.getClass().equals(direccion.getClass())) {
+                   direccion=mantenimiento;
                  }
-                 arrayMantenimientodeEspecialidadesMédicas.add(mantenimiento1);
+                 arrayDireccion.add(direccion);
              }  
         }
         catch(Exception ex){
@@ -231,7 +231,7 @@ public class DireccionMantenimientoEspecialidadesMedicas {
     
     
     public void eliminarMantenimientoEspec(String identificador) throws Exception {
-        arrayMantenimientodeEspecialidadesMédicas = new ArrayList<MantenimientodeEspecialidadesMédicas>();
+        arrayDireccion = new ArrayList<MantenimientodeEspecialidadesMédicas>();
         try {            
             abrirArchivoInput();
             MantenimientodeEspecialidadesMédicas mantenimiento1 = null;

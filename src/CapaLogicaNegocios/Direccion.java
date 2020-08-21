@@ -22,6 +22,17 @@ public class Direccion implements Serializable {
         this.señas = señas;
     }
 
+    @Override
+    public String toString() {
+        return "Direccion{" + "\n"+
+                "provincia=" + provincia +"\n"+
+                ", canton=" + canton + "\n"+
+                ", distrito=" + distrito + "\n"+
+                ", señas=" + señas;
+    }
+
+    
+    
     public String getSeñas() {
         return señas;
     }
