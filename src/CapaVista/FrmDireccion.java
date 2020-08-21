@@ -1,6 +1,7 @@
 
 package CapaVista;
 
+import CapaLogicaNegocios.DireccionCatalogo;
 import EnumDireccionEspecialidadesMedicas.Canton;
 import EnumDireccionEspecialidadesMedicas.Distrito;
 import EnumDireccionEspecialidadesMedicas.Provincia;
@@ -9,8 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmDireccion extends javax.swing.JFrame {
 
     private DefaultTableModel tablaModelo;
-    private static Ciudad ciudadMantenimiento= null;
-
+    private static DireccionCatalogo direccion = null;
     
     
     public FrmDireccion() {
