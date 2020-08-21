@@ -12,7 +12,7 @@ public class MantenimientoEspecialidades  implements Serializable{
     String especialidad;
 
     public MantenimientoEspecialidades(String codigo, String doctor, String especialidad) {
-        this.codigo = codigo;
+        this.codigo += codigo;
         this.doctor = doctor;
         this.especialidad = especialidad;
     }
@@ -53,13 +53,13 @@ public class MantenimientoEspecialidades  implements Serializable{
 public static MantenimientoEspecialidades consultaEspecialidades(String codigo) throws Exception{
  return EspecialidadesDB.getInstance().consultarEspecialidad(codigo);
  }
- public static void agregarEspecialidad(EspecialidadesDB especialidad1) throws Exception{
+ public static void agregarEspecialidad(MantenimientoEspecialidades especialidad1) throws Exception{
  EspecialidadesDB.getInstance().agregarEspecialidad(especialidad1);
  }
- public static void eliminarCiudad(String codigo) throws Exception{
+ public static void eliminarEspecialidad(String codigo) throws Exception{
      EspecialidadesDB.getInstance().eliminarEspecialidad(codigo);
 }            
- public static void modificarCiudad(EspecialidadesDB especialidad1) throws Exception{
+ public static void modificarEspecialiadad(MantenimientoEspecialidades especialidad1) throws Exception{
  EspecialidadesDB.getInstance().modificarEspecialidad(especialidad1);
  }
  public static ArrayList<MantenimientoEspecialidades> arrayEspecialidad() throws Exception{
@@ -67,4 +67,4 @@ public static MantenimientoEspecialidades consultaEspecialidades(String codigo) 
  }
 }
     
-}
+
