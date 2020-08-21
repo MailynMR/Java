@@ -7,10 +7,7 @@ package CapaLogicaNegocios;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Mailyn Madrigal
- */
-public class DireccionCatalogo implements Serializable {
+
+public class Direccion implements Serializable {
     
 }
