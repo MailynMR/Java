@@ -56,6 +56,8 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
 
         jLabel2.setText("Especialidad");
 
+        jTxtCodigo.setEditable(false);
+
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +123,9 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        
+        
         // TODO add your handling code here:
         switch (tipoMantenimiento) {
             case AGREGAR:
@@ -161,7 +166,7 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
        
         //Actualiza el Departamento static del FrmDepartamento
         //para que cuando regrese lo agregue o modifique
-         FrmMantenimientoEspecialidades.setEspecialidadesMantenimiento(new MantenimientoEspecialidades(codigo, doctor, especialidad));
+         FrmMantenimientoCliientes.setEspecialidadesMantenimiento(new MantenimientoEspecialidades(codigo, doctor, especialidad));
        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

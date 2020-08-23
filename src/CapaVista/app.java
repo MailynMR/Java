@@ -130,7 +130,7 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-      FrmMantenimientoEspecialidades m = new FrmMantenimientoEspecialidades();
+      FrmMantenimientoCliientes m = new FrmMantenimientoCliientes();
       m.toFront();
       m.setVisible(true);
     }//GEN-LAST:event_saveMenuItemActionPerformed
