@@ -1,14 +1,12 @@
 package CapaLogicaNegocios;
 
+import PersistenciaNueva.PersistenciaMantenimientoCliente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import persistenciadeDatos.Catalogo_Especialidades_Medica;
 
 public class ClasedeMantenimientoCliente implements Serializable {
 
-//    private static Object getInstance() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     //es para ser almacenada en el archivo en bits
     //asi se puede volver a cargar
 
@@ -35,9 +33,17 @@ public class ClasedeMantenimientoCliente implements Serializable {
     }
 
     public String toString() {
-        return this.getIdentificacion() + " " + this.getNombre();
+    String hilera= "";
+    hilera = "Nombre: "+ getNombre() +
+             "\nApellido: " + getApellido()+
+             "\nTelefono habitación: "+ getTelefonoHabitacion() +
+             "\nTelefono Oficina: "+getTelefonoOficina()+
+             "\nTelefono celular: " + getTelefonoCelular()+
+             "\nDirección:" +getDireccion();
+    return hilera;
     }
-
+//      70 17 68 31 domination
+    
     public String getIdentificador() {
         return identificador;
     }
@@ -103,23 +109,23 @@ public class ClasedeMantenimientoCliente implements Serializable {
     }
 
     public static ClasedeMantenimientoCliente consultarMantenimientoCliente(String codigo) throws Exception {
-        return PersistensiaManconsultarMantenimientoCliente.getInstance().consultarMantenimiento(codigo);
+    return PersistenciaMantenimientoCliente.getInstance().consultarMantenimientoCliente(codigo);
     }
 
-    public static void agregarMantenimiento(ClasedeMantenimientoCliente mantenimiento) throws Exception {
-        Catalogo_Especialidades_Medica.getInstance().agregarMantenimientoEsp(mantenimiento);
+    public static void agregarMantenimientoCliente(ClasedeMantenimientoCliente mantenimiento) throws Exception {
+        PersistenciaMantenimientoCliente.getInstance().agregarMantenimientoCliente(mantenimiento);
     }
 
-    public static void eliminarMantenimiento(String codigo) throws Exception {
-        Catalogo_Especialidades_Medica.getInstance().eliminarMantenimientoEspec(codigo);
+    public static void eliminarMantenimientoEspec(String codigo) throws Exception {
+        PersistenciaMantenimientoCliente.getInstance().eliminarMantenimientoEspec(codigo);
     }
 
-    public static void modificarDepartamento(ClasedeMantenimientoCliente mante) throws Exception {
-        Catalogo_Especialidades_Medica.getInstance().modificarMantenimientoEspecialidad(mante);
+    public static void modificarMantenientoCliente(ClasedeMantenimientoCliente mante) throws Exception {
+        PersistenciaMantenimientoCliente.getInstance().modificarMantenientoCliente(mante);
     }
 
-    public static ArrayList<ClasedeMantenimientoCliente> listadoDepartamentos() throws Exception {
-        return Catalogo_Especialidades_Medica.getInstance().listaEspecialidadesMédicas();
+    public static ArrayList<ClasedeMantenimientoCliente> arrayMantenimiento() throws Exception {
+        return PersistenciaMantenimientoCliente.getInstance().listaMantenimiento();
     }
 
 }

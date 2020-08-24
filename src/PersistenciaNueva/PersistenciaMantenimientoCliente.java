@@ -31,7 +31,7 @@ public class PersistenciaMantenimientoCliente {
     private FileOutputStream archivoSalida;
     
     
-    private ArrayList<PersistenciaMantenimientoCliente> arrayMantenimiento;
+    private ArrayList<ClasedeMantenimientoCliente> arrayMantenimiento;
     
     //Instancia privada de la misma clase
     //implementa el patrón Singleton
@@ -155,7 +155,7 @@ public class PersistenciaMantenimientoCliente {
 
    //Busca y retorna el objeto Departamento de acuerdo al código que recibe como 
    //parámetro, en caso de que no lo encuentre retorna null
-    public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identificador)throws Exception {
+public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identificador)throws Exception {
         ClasedeMantenimientoCliente mantenimiento;
         ClasedeMantenimientoCliente mantenimientoBuscado = null;
         try {
@@ -209,20 +209,19 @@ public class PersistenciaMantenimientoCliente {
      * @return void
      */
       public void modificarMantenientoCliente(ClasedeMantenimientoCliente man) throws Exception{
-        arrayMantenimiento
-                = new ArrayList<ClaseMantenimientoEspecialidades>();
+        arrayMantenimiento = new ArrayList<ClasedeMantenimientoCliente>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             ClaseMantenimientoEspecialidades especialidad1=null;
+             ClasedeMantenimientoCliente mantenimiento1=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 especialidad1 = (ClaseMantenimientoEspecialidades)oLector.readObject(); 
-                 if(especialidad1.getCodigo().equalsIgnoreCase(man.getCodigo())) {
-                  especialidad1=man;
+                 mantenimiento1 = (ClasedeMantenimientoCliente) oLector.readObject(); 
+                 if(mantenimiento1.getIdentificador().equalsIgnoreCase(man.getIdentificador())) {
+                  mantenimiento1=man;
                  }
-                 arrayEspecialidades.add(especialidad1);
+                 arrayMantenimiento.add(mantenimiento1);
              }  
         }
         catch(Exception ex){
@@ -238,20 +237,20 @@ public class PersistenciaMantenimientoCliente {
     
     
     public void eliminarMantenimientoEspec(String identificador) throws Exception {
-        arrayMantenimientodeEspecialidadesMédicas = new ArrayList<MantenimientodeEspecialidadesMédicas>();
+        arrayMantenimiento = new ArrayList<ClasedeMantenimientoCliente>();
         try {            
             abrirArchivoInput();
-            MantenimientodeEspecialidadesMédicas mantenimiento1 = null;
+            ClasedeMantenimientoCliente mante = null;
             //Pasa al ArrayList temporal todos los departamentos cuyo código es 
             //diferente al del departamento que se recibe como parámetro
             while(true){
-                 mantenimiento1 = (MantenimientodeEspecialidadesMédicas)oLector.readObject();               
-                 if(!mantenimiento1.getIdentificador().equalsIgnoreCase(identificador)) {
-                     arrayMantenimientodeEspecialidadesMédicas.add(mantenimiento1);
+                 mante =  (ClasedeMantenimientoCliente) oLector.readObject();               
+                 if(!mante.getIdentificador().equalsIgnoreCase(identificador)) {
+                     arrayMantenimiento.add(mante);
                  }
              }                       
-        }catch(Exception e){      
-           
+        }
+        catch(Exception e){   
         }
         finally{
             cerrarArchivoInput();
@@ -268,10 +267,10 @@ public class PersistenciaMantenimientoCliente {
           if(archivoOriginal.exists()){
             archivoOriginal.delete();
           }  
-          if(!arrayMantenimientodeEspecialidadesMédicas.isEmpty()){
+          if(!arrayMantenimiento.isEmpty()){
              abrirArchivoOutput();
           //Pasa todos los departamentos del ArrayList al archivo
-            for (MantenimientodeEspecialidadesMédicas mantenimiento : arrayMantenimientodeEspecialidadesMédicas) {
+            for (ClasedeMantenimientoCliente mantenimiento : arrayMantenimiento) {
              oEscritor.writeObject(mantenimiento);       
             }     
           }
@@ -279,4 +278,4 @@ public class PersistenciaMantenimientoCliente {
     }  
 }
 
-}
+

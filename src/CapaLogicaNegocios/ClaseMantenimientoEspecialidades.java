@@ -50,21 +50,25 @@ public class ClaseMantenimientoEspecialidades  implements Serializable{
     }
     
         
-public static ClaseMantenimientoEspecialidades consultaEspecialidades(String codigo) throws Exception{
- return EspecialidadesDB.getInstance().consultarEspecialidad(codigo);
- }
- public static void agregarEspecialidad(ClaseMantenimientoEspecialidades especialidad1) throws Exception{
- EspecialidadesDB.getInstance().agregarEspecialidad(especialidad1);
- }
- public static void eliminarEspecialidad(String codigo) throws Exception{
-     EspecialidadesDB.getInstance().eliminarEspecialidad(codigo);
-}            
- public static void modificarEspecialiadad(ClaseMantenimientoEspecialidades especialidad1) throws Exception{
- EspecialidadesDB.getInstance().modificarEspecialidad(especialidad1);
- }
- public static ArrayList<ClaseMantenimientoEspecialidades> arrayEspecialidad() throws Exception{
- return EspecialidadesDB.getInstance().listaEspecialidades();
- }
+    public static ClaseMantenimientoEspecialidades consultaEspecialidades(String codigo) throws Exception {
+        return EspecialidadesDB.getInstance().consultarEspecialidad(codigo);
+    }
+
+    public static void agregarEspecialidad(ClaseMantenimientoEspecialidades especialidad1) throws Exception {
+        EspecialidadesDB.getInstance().agregarEspecialidad(especialidad1);
+    }
+
+    public static void eliminarEspecialidad(String codigo) throws Exception {
+        EspecialidadesDB.getInstance().eliminarEspecialidad(codigo);
+    }
+
+    public static void modificarEspecialiadad(ClaseMantenimientoEspecialidades especialidad1) throws Exception {
+        EspecialidadesDB.getInstance().modificarEspecialidad(especialidad1);
+    }
+
+    public static ArrayList<ClaseMantenimientoEspecialidades> arrayEspecialidad() throws Exception {
+        return EspecialidadesDB.getInstance().listaEspecialidades();
+    }
 }
     
 
