@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import persistenciadeDatos.Catalogo_Especialidades_Medica;
 
-public class MantenimientodeEspecialidadesMédicas implements Serializable {
+public class ClasedeMantenimientoCliente implements Serializable {
 
 //    private static Object getInstance() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -24,7 +24,7 @@ public class MantenimientodeEspecialidadesMédicas implements Serializable {
     // de “Distribución_Territorial_Costa_Rica.txt
     // debe indicar provincia,canton,distrito,señas
 
-    public MantenimientodeEspecialidadesMédicas(int identificacion, String nombre, String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
+    public ClasedeMantenimientoCliente(int identificacion, String nombre, String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
         this.identificacion += identificacion;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -102,11 +102,11 @@ public class MantenimientodeEspecialidadesMédicas implements Serializable {
         this.direccion = direccion;
     }
 
-    public static MantenimientodeEspecialidadesMédicas consultarDepartamento(String codigo) throws Exception {
-        return Catalogo_Especialidades_Medica.getInstance().consultarMantenimiento(codigo);
+    public static ClasedeMantenimientoCliente consultarMantenimientoCliente(String codigo) throws Exception {
+        return PersistensiaManconsultarMantenimientoCliente.getInstance().consultarMantenimiento(codigo);
     }
 
-    public static void agregarMantenimiento(MantenimientodeEspecialidadesMédicas mantenimiento) throws Exception {
+    public static void agregarMantenimiento(ClasedeMantenimientoCliente mantenimiento) throws Exception {
         Catalogo_Especialidades_Medica.getInstance().agregarMantenimientoEsp(mantenimiento);
     }
 
@@ -114,11 +114,11 @@ public class MantenimientodeEspecialidadesMédicas implements Serializable {
         Catalogo_Especialidades_Medica.getInstance().eliminarMantenimientoEspec(codigo);
     }
 
-    public static void modificarDepartamento(MantenimientodeEspecialidadesMédicas mante) throws Exception {
+    public static void modificarDepartamento(ClasedeMantenimientoCliente mante) throws Exception {
         Catalogo_Especialidades_Medica.getInstance().modificarMantenimientoEspecialidad(mante);
     }
 
-    public static ArrayList<MantenimientodeEspecialidadesMédicas> listadoDepartamentos() throws Exception {
+    public static ArrayList<ClasedeMantenimientoCliente> listadoDepartamentos() throws Exception {
         return Catalogo_Especialidades_Medica.getInstance().listaEspecialidadesMédicas();
     }
 

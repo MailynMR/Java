@@ -1,6 +1,6 @@
 package CapaVista;
 
-import CapaLogicaNegocios.MantenimientoEspecialidades;
+import CapaLogicaNegocios.ClaseMantenimientoEspecialidades;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
 
     private DefaultTableModel tablaModelo;
-    private static MantenimientoEspecialidades especialidadesMantenimiento = null;
+    private static ClaseMantenimientoEspecialidades especialidadesMantenimiento = null;
 
     public FrmMantenimientodeEspecialidades() {
         initComponents();
@@ -267,7 +267,7 @@ public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
         if (this.especialidadesMantenimiento != null) {
             //Agrega el departamento al archivo
             try {
-                MantenimientoEspecialidades.agregarEspecialidad(especialidadesMantenimiento); //Agrega el departamento al archivo
+                ClaseMantenimientoEspecialidades.agregarEspecialidad(especialidadesMantenimiento); //Agrega el departamento al archivo
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error al grabar el Especialidad " + "\n" + ex.toString() + "\n" + ex.getMessage());
                 return;
@@ -284,9 +284,9 @@ public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
 
         this.tablaModelo.setRowCount(0);//Limpia la tabla
         Object[] datos = new Object[3];
-        ArrayList<MantenimientoEspecialidades> lista = new ArrayList<MantenimientoEspecialidades>();
+        ArrayList<ClaseMantenimientoEspecialidades> lista = new ArrayList<ClaseMantenimientoEspecialidades>();
         try {
-            lista = MantenimientoEspecialidades.arrayEspecialidad(); //Invoca al método que retorna una ArrayList de Departamentos
+            lista = ClaseMantenimientoEspecialidades.arrayEspecialidad(); //Invoca al método que retorna una ArrayList de Departamentos
         } catch (Exception e) {
         }
         for (int i = 0; i < lista.size(); i++) {
@@ -298,11 +298,11 @@ public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
     }
 
 
-    public static MantenimientoEspecialidades getEspecialidadesMantenimiento() {
+    public static ClaseMantenimientoEspecialidades getEspecialidadesMantenimiento() {
         return especialidadesMantenimiento;
     }
 
-    public static void setEspecialidadesMantenimiento(MantenimientoEspecialidades especialidadesMantenimiento) {
+    public static void setEspecialidadesMantenimiento(ClaseMantenimientoEspecialidades especialidadesMantenimiento) {
         FrmMantenimientodeEspecialidades.especialidadesMantenimiento = especialidadesMantenimiento;
     }
     
@@ -338,7 +338,7 @@ public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
             if (this.especialidadesMantenimiento != null) {
                 //Modifica el departamento de la lista
                 try {
-                    MantenimientoEspecialidades.modificarEspecialiadad(especialidadesMantenimiento);
+                    ClaseMantenimientoEspecialidades.modificarEspecialiadad(especialidadesMantenimiento);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error al modificar la ciudad" + "\n" + ex.toString());
                     return;
@@ -362,7 +362,7 @@ public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
         String codigo
                 = jTblEspecialidad.getValueAt(jTblEspecialidad.getSelectedRow(), 0).toString();
         try {
-            MantenimientoEspecialidades.eliminarEspecialidad(codigo);
+            ClaseMantenimientoEspecialidades.eliminarEspecialidad(codigo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar la Especialidad" + "\n" + ex.toString());
         }

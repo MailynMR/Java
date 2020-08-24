@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import persistenciadeDatos.EspecialidadesDB;
 
-public class MantenimientoEspecialidades  implements Serializable{
+public class ClaseMantenimientoEspecialidades  implements Serializable{
     
     String codigo;
     String doctor;
     String especialidad;
 
-    public MantenimientoEspecialidades(String codigo, String doctor, String especialidad) {
+    public ClaseMantenimientoEspecialidades(String codigo, String doctor, String especialidad) {
         this.codigo += codigo;
         this.doctor = doctor;
         this.especialidad = especialidad;
@@ -50,19 +50,19 @@ public class MantenimientoEspecialidades  implements Serializable{
     }
     
         
-public static MantenimientoEspecialidades consultaEspecialidades(String codigo) throws Exception{
+public static ClaseMantenimientoEspecialidades consultaEspecialidades(String codigo) throws Exception{
  return EspecialidadesDB.getInstance().consultarEspecialidad(codigo);
  }
- public static void agregarEspecialidad(MantenimientoEspecialidades especialidad1) throws Exception{
+ public static void agregarEspecialidad(ClaseMantenimientoEspecialidades especialidad1) throws Exception{
  EspecialidadesDB.getInstance().agregarEspecialidad(especialidad1);
  }
  public static void eliminarEspecialidad(String codigo) throws Exception{
      EspecialidadesDB.getInstance().eliminarEspecialidad(codigo);
 }            
- public static void modificarEspecialiadad(MantenimientoEspecialidades especialidad1) throws Exception{
+ public static void modificarEspecialiadad(ClaseMantenimientoEspecialidades especialidad1) throws Exception{
  EspecialidadesDB.getInstance().modificarEspecialidad(especialidad1);
  }
- public static ArrayList<MantenimientoEspecialidades> arrayEspecialidad() throws Exception{
+ public static ArrayList<ClaseMantenimientoEspecialidades> arrayEspecialidad() throws Exception{
  return EspecialidadesDB.getInstance().listaEspecialidades();
  }
 }
