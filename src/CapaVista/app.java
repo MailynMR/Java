@@ -119,7 +119,7 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-     UsuarioMantenimientoEspecialidadesMedicas u= new UsuarioMantenimientoEspecialidadesMedicas();
+     FrmMantenimientodeClientes u= new FrmMantenimientodeClientes();
      escritorio.add(u);
      u.toFront();
      u.setVisible(true);
@@ -130,7 +130,7 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-      FrmMantenimientoCliientes m = new FrmMantenimientoCliientes();
+      FrmMantenimientodeEspecialidades m = new FrmMantenimientodeEspecialidades();
       m.toFront();
       m.setVisible(true);
     }//GEN-LAST:event_saveMenuItemActionPerformed

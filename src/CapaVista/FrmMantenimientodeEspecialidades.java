@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class FrmMantenimientoCliientes extends javax.swing.JFrame {
+public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
 
     private DefaultTableModel tablaModelo;
     private static MantenimientoEspecialidades especialidadesMantenimiento = null;
 
-    public FrmMantenimientoCliientes() {
+    public FrmMantenimientodeEspecialidades() {
         initComponents();
         tablaModelo = (DefaultTableModel) jTblEspecialidad.getModel();
     }
@@ -303,7 +303,7 @@ public class FrmMantenimientoCliientes extends javax.swing.JFrame {
     }
 
     public static void setEspecialidadesMantenimiento(MantenimientoEspecialidades especialidadesMantenimiento) {
-        FrmMantenimientoCliientes.especialidadesMantenimiento = especialidadesMantenimiento;
+        FrmMantenimientodeEspecialidades.especialidadesMantenimiento = especialidadesMantenimiento;
     }
     
     
@@ -437,14 +437,18 @@ public class FrmMantenimientoCliientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMantenimientoCliientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientodeEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMantenimientoCliientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientodeEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMantenimientoCliientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientodeEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMantenimientoCliientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMantenimientodeEspecialidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -453,7 +457,7 @@ public class FrmMantenimientoCliientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMantenimientoCliientes().setVisible(true);
+                new FrmMantenimientodeEspecialidades().setVisible(true);
             }
         });
     }
