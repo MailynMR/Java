@@ -166,7 +166,7 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
        
         //Actualiza el Departamento static del FrmDepartamento
         //para que cuando regrese lo agregue o modifique
-         FrmMantenimientodeEspecialidades.setEspecialidadesMantenimiento(new ClaseMantenimientoEspecialidades(codigo, doctor, especialidad));
+        FrmMantenimientodeEspecialidades.setEspecialidadesMantenimiento(new ClaseMantenimientoEspecialidades(codigo, doctor, especialidad));
        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

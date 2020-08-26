@@ -264,18 +264,20 @@ public class FrmMantenimientodeEspecialidades extends javax.swing.JFrame {
         dlgCiudad.setLocationRelativeTo(null);
         dlgCiudad.setVisible(true);
         //Cuando regresa del JDialog debe traer el departamento a agregar
-        if (this.especialidadesMantenimiento != null) {
-            //Agrega el departamento al archivo
-            try {
-                ClaseMantenimientoEspecialidades.agregarEspecialidad(especialidadesMantenimiento); //Agrega el departamento al archivo
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error al grabar el Especialidad " + "\n" + ex.toString() + "\n" + ex.getMessage());
-                return;
-            }
-
-            //actualiza la tabla con el nuevo departamento
-            llenaTablaEspecialidad();
-        }
+        
+        
+    if (this.especialidadesMantenimiento != null) {
+        //Agrega el departamento al archivo
+try {
+    ClaseMantenimientoEspecialidades.agregarEspecialidad(especialidadesMantenimiento); //Agrega el departamento al archivo
+} catch (Exception ex) {
+    JOptionPane.showMessageDialog(null, "Error al grabar el Especialidad " + "\n" + ex.toString() + "\n" + ex.getMessage());
+    return;
+}
+        //actualiza la tabla con el nuevo departamento
+        llenaTablaEspecialidad();
+    }
+    
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void llenaTablaEspecialidad() {
