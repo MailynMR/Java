@@ -1,6 +1,7 @@
 
 package CapaVista;
 
+import CapaLogicaNegocios.ClasedeMantenimientoCliente;
 import CapaLogicaNegocios.MantenimientodeEspecialidadesMédicas;
 import CapaLogicaNegocios.Profesion;
 import EnumDireccionEspecialidadesMedicas.Distrito;
@@ -49,7 +50,7 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         txtTelefonoCasa = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtTelefonoCelular = new javax.swing.JTextField();
+        txtNivelEscolaridad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -60,6 +61,10 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         comboProfesion = new javax.swing.JComboBox<>();
         btnAtras = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtTelefonoCelular = new javax.swing.JTextField();
+        txtNivelIngresos = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,8 +107,8 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Telefono de la Oficina:");
 
-        txtTelefonoCelular.setBackground(new java.awt.Color(153, 153, 0));
-        txtTelefonoCelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtNivelEscolaridad.setBackground(new java.awt.Color(153, 153, 0));
+        txtNivelEscolaridad.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Dirección:");
@@ -171,11 +176,21 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setText("Nivel de escolaridad: ");
+
+        txtTelefonoCelular.setBackground(new java.awt.Color(153, 153, 0));
+        txtTelefonoCelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        txtNivelIngresos.setBackground(new java.awt.Color(153, 153, 0));
+        txtNivelIngresos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jLabel11.setText("Nivel de ingresos: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -186,7 +201,9 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -197,13 +214,12 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
                         .addComponent(txtTelefonoCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtTelefonoOficina)
-                        .addComponent(txtTelefonoCelular)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(comboProfesion, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboProfesion, javax.swing.GroupLayout.Alignment.TRAILING, 0, 169, Short.MAX_VALUE)
+                        .addComponent(txtNivelEscolaridad, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtTelefonoCelular, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtNivelIngresos)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(btnRegistraCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,13 +228,28 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAtras)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnAtras)
+                        .addContainerGap(288, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnRegistraCliente)
+                                .addComponent(btnActualizarCliente)
+                                .addComponent(btnAtras)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,17 +286,14 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboProfesion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminarCliente, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnRegistraCliente)
-                                .addComponent(btnActualizarCliente)
-                                .addComponent(btnAtras)))
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(73, 73, 73))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNivelEscolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNivelIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addContainerGap())
         );
 
         pack();
@@ -277,47 +305,55 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
      d.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void llenarTablaClientes(){
+        this.tablaModelo.setRowCount(0);//Limpia la tabla
+        Object[] datos = new Object[10];
+        ArrayList<ClasedeMantenimientoCliente> lista = new ArrayList<ClasedeMantenimientoCliente>();
+        try {
+            lista = ClasedeMantenimientoCliente.arrayMantenimiento(); //Invoca al método que retorna una ArrayList de Departamentos
+        } catch (Exception e) {
+        }
+        for (int i = 0; i < lista.size(); i++) {
+            datos[0] = lista.get(i).getIdentificador();
+            datos[1] = lista.get(i).getDOC_id();
+            datos[2] = lista.get(i).getNombre()+ " " + lista.get(i).getApellido();
+            datos[3] = lista.get(i).getTelefonoHabitacion();
+            datos[4] = lista.get(i).getTelefonoOficina();
+            datos[5] = lista.get(i).getTelefonoCelular();
+            datos[6] = lista.get(i).getDireccion();
+            datos[7] = lista.get(i).getProfesion();
+            datos[8] = lista.get(i).getNivelEscolaridad();
+            datos[9] = lista.get(i).getSueldo();
+            tablaModelo.addRow(datos); //Agrega el arreglo como una nueva fila de la tabla
+        }
+    
+    }
+    
     private void btnRegistraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistraClienteActionPerformed
       
         
         String identificador=txtIdentificador.getText();
-
-        
-        int id= Integer.parseInt(txtDocIdentificacion.getText());
+        int DocIdentificacion= Integer.parseInt(txtDocIdentificacion.getText());
         String nombre = txtNombre.getText();
         String apellido = txtApellidos.getText();
         int telf_casa = Integer.parseInt(txtTelefonoCasa.getText());
         int telf_oficina = Integer.parseInt(txtTelefonoOficina.getText());
-        int telf_cel = Integer.parseInt(txtTelefonoCelular.getText());
+        int telf_cel = Integer.parseInt(txtNivelEscolaridad.getText());
         
-        int profesion = comboProfesion.getSelectedIndex();
+        String  profesion = String.valueOf(comboProfesion.getSelectedIndex());
+        String nivelEscolaridad= txtNivelIngresos.getText();
+        int sueldo = Integer.parseInt(txtNivelIngresos.getText());
+        String direccion ="Ninguna";
+        //para que cuando regrese lo agregue o modifique
         
-           //Llama al método que llena la lista con los Departamentos del ArrayList
-        //Llena la tabla con los Departamentos que se grabaron en el ArrayList
-
-        this.tablaModelo.setRowCount(0);//Limpia la tabla
-        Object[] datos = new Object[3];
-        ArrayList<MantenimientodeEspecialidadesMédicas> lista = new ArrayList<MantenimientodeEspecialidadesMédicas>();
-        try {
-            lista = MantenimientodeEspecialidadesMédicas; //Invoca al método que retorna una ArrayList de Departamentos
-        } catch (Exception e) {
-        }
-        for (int i = 0; i < lista.size(); i++) {
-            datos[0] = lista.get(i).getCodigo();
-            datos[1] = lista.get(i).getEspecialidad();
-            datos[2] = lista.get(i).getDoctor();
-            tablaModelo.addRow(datos); //Agrega el arreglo como una nueva fila de la tabla
-        }
-    
-
-
+        ClasedeMantenimientoCliente clase =
+new ClasedeMantenimientoCliente(sueldo, nivelEscolaridad,profesion, DocIdentificacion, nombre, apellido,telf_casa, telf_oficina, telf_cel,direccion);
         
-        
-        
-        
-        
-        
-        
+/*nt sueldo,String nivelEscolaridad,String profesion, int DOC_id, String nombre,
+                String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
+       */
+        //actualiza la tabla con el nuevo departamento
+         llenarTablaClientes();
         
     }//GEN-LAST:event_btnRegistraClienteActionPerformed
 
@@ -340,6 +376,8 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRegistraCliente;
     private javax.swing.JComboBox<Profesion> comboProfesion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -353,6 +391,8 @@ public class FrmMantenimientodeClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtDocIdentificacion;
     private javax.swing.JTextField txtIdentificador;
+    private javax.swing.JTextField txtNivelEscolaridad;
+    private javax.swing.JTextField txtNivelIngresos;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefonoCasa;
     private javax.swing.JTextField txtTelefonoCelular;

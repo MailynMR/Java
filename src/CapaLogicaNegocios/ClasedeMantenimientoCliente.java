@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import persistenciadeDatos.Catalogo_Especialidades_Medica;
 
 public class ClasedeMantenimientoCliente implements Serializable {
-
     //es para ser almacenada en el archivo en bits
     //asi se puede volver a cargar
 
     String identificador;
-    int identificacion; //Validarse que sea unico
+    int DOC_id; //Validarse que sea unico
     String nombre;
     String apellido;
     int telefonoHabitacion;
@@ -21,9 +20,16 @@ public class ClasedeMantenimientoCliente implements Serializable {
     // esta debe guardarse en el txt 
     // de “Distribución_Territorial_Costa_Rica.txt
     // debe indicar provincia,canton,distrito,señas
-
-    public ClasedeMantenimientoCliente(int identificacion, String nombre, String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
-        this.identificacion += identificacion;
+    String profesion;
+    String nivelEscolaridad;
+    int sueldo;
+    
+    public ClasedeMantenimientoCliente(int sueldo,String nivelEscolaridad,String profesion, int DOC_id, String nombre, String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
+        this.sueldo= sueldo;
+        this.nivelEscolaridad=nivelEscolaridad;
+        this.profesion=profesion;
+        identificador+=1;
+        this.DOC_id = DOC_id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefonoHabitacion = telefonoHabitacion;
@@ -43,6 +49,30 @@ public class ClasedeMantenimientoCliente implements Serializable {
     return hilera;
     }
 //      70 17 68 31 domination
+
+    public int getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(int sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public String getNivelEscolaridad() {
+        return nivelEscolaridad;
+    }
+
+    public void setNivelEscolaridad(String nivelEscolaridad) {
+        this.nivelEscolaridad = nivelEscolaridad;
+    }
+
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
     
     public String getIdentificador() {
         return identificador;
@@ -52,13 +82,14 @@ public class ClasedeMantenimientoCliente implements Serializable {
         this.identificador = identificador;
     }
 
-    public int getIdentificacion() {
-        return identificacion;
+    public int getDOC_id() {
+        return DOC_id;
     }
 
-    public void setIdentificacion(int identificacion) {
-        this.identificacion = identificacion;
+    public void setDOC_id(int DOC_id) {
+        this.DOC_id = DOC_id;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -127,5 +158,7 @@ public class ClasedeMantenimientoCliente implements Serializable {
     public static ArrayList<ClasedeMantenimientoCliente> arrayMantenimiento() throws Exception {
         return PersistenciaMantenimientoCliente.getInstance().listaMantenimiento();
     }
+    
+    
 
 }
