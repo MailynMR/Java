@@ -5,17 +5,25 @@
  */
 package CapaVista;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import CapaLogicaNegocios.UsuariosLogin;
+import Archivador.ArchivadorUsuario;
+import java.util.ArrayList;
 /**
  *
  * @author Christopher Reyes
  */
 public class FrmCreacionUsuario extends javax.swing.JFrame {
 
+   private DefaultTableModel tablaModelo;
+  
     /**
      * Creates new form FrmCreacionUsuario
      */
     public FrmCreacionUsuario() {
         initComponents();
+         tablaModelo = (DefaultTableModel)tablaUsuario.getModel();
     }
 
     /**
@@ -27,22 +35,361 @@ public class FrmCreacionUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtEstadoUsuario = new javax.swing.JTextField();
+        comboRol = new javax.swing.JComboBox<>();
+        btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaUsuario = new javax.swing.JTable();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        txtContraseña = new javax.swing.JPasswordField();
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Codigo:");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Codigo:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Nombre de Usuario:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Contraseña");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Rol de Usuario:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Estado de Usuario:");
+
+        comboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario Administrador", "Usuario Mantenimiento", "Usuario Citas ", "Usuario Docto" }));
+        comboRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboRolActionPerformed(evt);
+            }
+        });
+
+        btnGuardar.setBackground(new java.awt.Color(102, 102, 0));
+        btnGuardar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Salvar_Disco2.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.jpg"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre Usuario", "Contraseña", "Rol", "Estado Usuario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaUsuario);
+
+        btnEditar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEditar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar cliente 32px.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar_usuario 32 px.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEstadoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCodigo)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEstadoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        //se deben de guardar las archivos en
+        //“Distribución_Territorial_Costa_Rica.txt"
+        
+        
+        
+                                                  
+        if(txtCodigo.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe digitar el nombre de la ciudad");
+            tablaUsuario.requestFocus();
+            return;
+        }
+        if(txtNombre.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe digitar el nombre de la ciudad");
+            tablaUsuario.requestFocus();
+            return;
+        }
+        if(txtContraseña.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe digitar el nombre de la ciudad");
+            tablaUsuario.requestFocus();
+            return;
+        }
+
+        if(comboRol.getSelectedIndex()==-1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar la zona donde se encuentra la ciudad");
+            comboRol.requestFocus();
+            return;
+        }
+        if(txtEstadoUsuario.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe digitar el nombre de la ciudad");
+            tablaUsuario.requestFocus();
+            return;
+        }
+        String Rol=(String) comboRol.getSelectedItem();
+        
+        UsuariosLogin usuario = new UsuariosLogin(txtCodigo.getText(),txtNombre.getText(),txtContraseña.getText(),Rol,txtEstadoUsuario.getText());
+        //String Codigo, String Nombre,String Contrasena, String RolUsuario, String EstadoUsuario
+        ArchivadorUsuario.agregarUsuario(usuario); //Aquí está llamando al Archivador
+        
+        
+        
+
+        llenarTabla(); //LLama al método llenarTabla()
+        txtCodigo.setText("");
+        txtCodigo.requestFocus();
+        
+        comboRol.setSelectedIndex(-1);
+        Limpiar();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+          Limpiar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+          String Codigo = txtCodigo.getText();
+            String Nombre = txtNombre.getText();
+            String Contraseña = txtContraseña.getText();
+            String Estado = txtEstadoUsuario.getText();
+            String Rol=(String)comboRol.getSelectedItem();
+            
+        int posicion = ArchivadorUsuario.posicionUsuario(Codigo);
+        UsuariosLogin usuario =
+                new UsuariosLogin(Codigo,Nombre,Contraseña,Rol,Estado);
+        
+        ArchivadorUsuario.modificarUsuario(posicion,usuario);
+        llenarTabla(); 
+        Limpiar();
+        activarBotones();
+        txtCodigo.setEnabled(true);
+        Limpiar();
+        habilitacajas();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+           int fila = tablaUsuario.getSelectedRow();
+        if(fila != -1){
+            String Codigo = (String)tablaUsuario.getValueAt(fila,0);
+            ArchivadorUsuario.eliminarUsuario(Codigo);
+            llenarTabla();
+            Limpiar();
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el artículo a eliminar");
+        }
+       habilitacajas();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void comboRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboRolActionPerformed
+
+    private void tablaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuarioMouseClicked
+        // TODO add your handling code here:
+        
+        if(evt.getClickCount() == 5){
+            int index = tablaUsuario.getSelectedRow();
+            desactivarBotones();
+            txtCodigo.setEnabled(false);
+            txtNombre.setEnabled(false);
+            txtContraseña.setEnabled(false);
+            /*comboRol.setSelectedIndex(index);*/
+            txtEstadoUsuario.setEnabled(false);
+            
+            /*
+            Zona zona = (Zona)jTblCiudades.getValueAt(index, 1);
+            jTxtNombreCiudad.setText((String) jTblCiudades.getValueAt(index,0));
+            jCboZona.setSelectedIndex(zona.ordinal());
+           */
+        }
+    }//GEN-LAST:event_tablaUsuarioMouseClicked
+
+    
+    
+         private void habilitacajas(){
+            txtCodigo.setEnabled(true);
+            txtContraseña.setEnabled(true);
+            txtEstadoUsuario.setEnabled(true);
+            txtNombre.setEnabled(true);
+            
+         } 
+         private void desactivarBotones() {
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+    }
+     
+        private void llenarTabla() {
+        //Limpia todas las filas de la tabla
+        tablaModelo.setRowCount(0);
+        Object[] fila = new Object[5];
+        ArrayList<UsuariosLogin> lista = ArchivadorUsuario.getArrayUsuario();
+        for (UsuariosLogin usuario : lista) {
+            fila[0] = usuario.getCodigo();
+            fila[1] = usuario.getNombre();
+            fila[2] = usuario.getContrasena();
+            fila[3] = usuario.getRolUsuario();
+            fila[4] = usuario.getEstadoUsuario();            
+            //agrega el arreglo a la fila
+            tablaModelo.addRow(fila);
+        }
+    }
+    private void activarBotones() {
+        btnGuardar.setEnabled(true);
+        btnEliminar.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+    }
+    
+    private void Limpiar(){
+        txtCodigo.setText("");
+        comboRol.setSelectedIndex(-1);
+        txtContraseña.setText("");
+        txtEstadoUsuario.setText("");
+        txtNombre.setText("");
+        activarBotones();
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -79,5 +426,23 @@ public class FrmCreacionUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> comboRol;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tablaUsuario;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JTextField txtEstadoUsuario;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

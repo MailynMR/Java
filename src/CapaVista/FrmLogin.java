@@ -108,6 +108,9 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
        // SE DEBE REGISTRAR
+       FrmCreacionUsuario frm =new FrmCreacionUsuario();
+       frm.setVisible(true);
+       frm.setLocationRelativeTo(null);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
