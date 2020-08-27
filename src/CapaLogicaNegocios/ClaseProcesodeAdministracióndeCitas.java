@@ -1,6 +1,10 @@
 
 package CapaLogicaNegocios;
 
+import PersistenciaNueva.PersistenciaCitas;
+import PersistenciaNueva.PersistenciaMantenimientoCliente;
+import java.util.ArrayList;
+
 public class ClaseProcesodeAdministracióndeCitas {
     
     String numeroCita;
@@ -18,10 +22,28 @@ public class ClaseProcesodeAdministracióndeCitas {
         this.hora = hora;
         this.especialidad = especialidad;
     }
-    
-    
     // configuracion de botones
 
+    public static ClaseProcesodeAdministracióndeCitas consultarCita(String codigo) throws Exception {
+    return PersistenciaCitas.getInstance().consultarCita(codigo);
+    }
+
+    public static void agregarCita(ClaseProcesodeAdministracióndeCitas mantenimiento) throws Exception {
+        PersistenciaCitas.getInstance().agregarCita(mantenimiento);
+    }
+
+    public static void eliminarCita(String codigo) throws Exception {
+        PersistenciaCitas.getInstance().eliminarCita(codigo);
+    }
+
+    public static void modificarCita(ClaseProcesodeAdministracióndeCitas cita) throws Exception {
+        PersistenciaCitas.getInstance().modificarCita(cita);
+    }
+
+    public static ArrayList<ClaseProcesodeAdministracióndeCitas> arrayCita() throws Exception {
+        return PersistenciaCitas.getInstance().listaCitas();
+    }
+    
     public String getNumeroCita() {
         return numeroCita;
     }
