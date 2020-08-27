@@ -1,9 +1,9 @@
 
 package CapaLogicaNegocios;
 
-public class ProcesodeAdministracióndeCitas {
+public class ClaseProcesodeAdministracióndeCitas {
     
-    int numeroCita;
+    String numeroCita;
     ClasedeMantenimientoCliente cliente ;
     int idCliente = cliente.getDOC_id();
     String fecha;
@@ -11,7 +11,7 @@ public class ProcesodeAdministracióndeCitas {
     ClaseMantenimientoEspecialidades especialidad;
     String nombreDoctor= especialidad.getDoctor();
 
-    public ProcesodeAdministracióndeCitas(int numeroCita, ClasedeMantenimientoCliente cliente, String fecha, String hora, ClaseMantenimientoEspecialidades especialidad) {
+    public ClaseProcesodeAdministracióndeCitas(String numeroCita, ClasedeMantenimientoCliente cliente, String fecha, String hora, ClaseMantenimientoEspecialidades especialidad) {
         this.numeroCita = numeroCita;
         this.cliente = cliente;
         this.fecha = fecha;
@@ -21,22 +21,12 @@ public class ProcesodeAdministracióndeCitas {
     
     
     // configuracion de botones
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-    public int getNumeroCita() {
+    public String getNumeroCita() {
         return numeroCita;
     }
 
-    public void setNumeroCita(int numeroCita) {
+    public void setNumeroCita(String numeroCita) {
         this.numeroCita = numeroCita;
     }
 

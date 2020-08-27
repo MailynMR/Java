@@ -1,9 +1,7 @@
-
 package PersistenciaNueva;
 
-import CapaLogicaNegocios.ClaseMantenimientoEspecialidades;
+import CapaLogicaNegocios.ClaseProcesodeAdministracióndeCitas;
 import CapaLogicaNegocios.ClasedeMantenimientoCliente;
-import CapaLogicaNegocios.MantenimientodeEspecialidadesMédicas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,11 +10,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import persistenciadeDatos.MiObjectOutputStream;
 
-/**
- *
- * @author Mailyn Madrigal
- */
-public class PersistenciaMantenimientoCliente {
+public class PersistenciaCitas {
+    
     private final String RUTA_ARCHIVO =
             System.getProperty("user.dir") + "\\src\\Archivo\\Mantenimiento.txt";
   
@@ -30,24 +25,25 @@ public class PersistenciaMantenimientoCliente {
     private FileOutputStream archivoSalida;
     
     
-    private ArrayList<ClasedeMantenimientoCliente> arrayMantenimiento;
+    private ArrayList<ClaseProcesodeAdministracióndeCitas> arrayCitas;
     
     //Instancia privada de la misma clase
     //implementa el patrón Singleton
-    private static  PersistenciaMantenimientoCliente instance= null;
+    private static  PersistenciaCitas instance= null;
    
     //Constructor privado, se implementa el patrón Singleton
 
-    public PersistenciaMantenimientoCliente() {
+    public PersistenciaCitas() {
     }
-    
+
     
     //Método público que retorna una única instancia de la 
     //clase, únicamnete se construye la primera vez.
 
-    public static PersistenciaMantenimientoCliente getInstance() {
-        if (instance == null) {
-            instance = new PersistenciaMantenimientoCliente();
+
+    public static PersistenciaCitas getInstance() {
+         if (instance == null) {
+            instance = new PersistenciaCitas();
         }
         return instance;
     }
@@ -129,17 +125,16 @@ public class PersistenciaMantenimientoCliente {
      * Lista de todos los Departamentos que se encuentran en el archivo
      * @return ArrayList
      */
-     public ArrayList<ClasedeMantenimientoCliente> listaMantenimiento() throws Exception{
-         ArrayList arrayMantenimiento = new ArrayList();
+     public ArrayList<ClaseProcesodeAdministracióndeCitas> listaCitas() throws Exception{
+         ArrayList arrayCitas = new ArrayList();
          //Ya que habrá bloque finally se debe encerrar el bloque try
          //el throws del encabezado lanza la excepción del finally      
          try {
              abrirArchivoInput();
              //Si no hay más datos que leer el método available retorna cero
              while (true) {
-                 ClasedeMantenimientoCliente man
-                         = (ClasedeMantenimientoCliente) oLector.readObject();
-                 arrayMantenimiento.add(man);
+                 ClaseProcesodeAdministracióndeCitas cita= (ClaseProcesodeAdministracióndeCitas) oLector.readObject();
+                 arrayCitas.add(cita);
              }
          } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
          catch (Exception ex) {
@@ -148,23 +143,23 @@ public class PersistenciaMantenimientoCliente {
         finally{
            //Ocurra o no ocurra la excepción se cierra el archivo
            cerrarArchivoInput();   
-           return arrayMantenimiento;
+           return arrayCitas;
         } 
     }
 
    //Busca y retorna el objeto Departamento de acuerdo al código que recibe como 
    //parámetro, en caso de que no lo encuentre retorna null
-public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identificador)throws Exception {
-        ClasedeMantenimientoCliente mantenimiento;
-        ClasedeMantenimientoCliente mantenimientoBuscado = null;
+public ClaseProcesodeAdministracióndeCitas consultarCita(String numCita)throws Exception {
+        ClaseProcesodeAdministracióndeCitas cita;
+        ClaseProcesodeAdministracióndeCitas buscarCita = null;
         try {
             abrirArchivoInput();
             //Si no hay más datos que leer el método available retorna cero
              while(true){
-                mantenimiento = (ClasedeMantenimientoCliente)oLector.readObject();               
-                if(mantenimiento.getIdentificador().equalsIgnoreCase(identificador)) {
+                cita = (ClaseProcesodeAdministracióndeCitas) oLector.readObject();               
+                if(cita.getNumeroCita().equalsIgnoreCase(numCita)) {
                 } else {
-                    mantenimientoBuscado = mantenimiento;
+                    buscarCita = cita;
                 }
              }            
         }catch(Exception e){
@@ -172,7 +167,7 @@ public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identifi
         }
         finally{ //Suceda o no suceda la excepción se deben cerrar los archivos
              cerrarArchivoInput();    
-             return mantenimientoBuscado;
+             return buscarCita;
         }       
     }
 
@@ -182,12 +177,12 @@ public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identifi
      * @param mantenimiento Objeto MantenimientodeEspecialidadesMédicas a agregar
      * @return void
      */
-    public  void agregarMantenimientoCliente(ClasedeMantenimientoCliente mantenimiento)throws Exception {        
+    public  void agregarCita(ClaseProcesodeAdministracióndeCitas cita)throws Exception {        
         try {
             this.abrirArchivoOutput();
             if (oEscritor != null) {
               //Ejecutar la escritura del objeto pDepartamento en el archivo
-               oEscritor.writeObject(mantenimiento);
+               oEscritor.writeObject(cita);
                oEscritor.flush();  //Envía el contenido del buffer al archivo
                oEscritor.reset();//Se requiere para cuando se reciben subclases de Departamento
             }
@@ -207,20 +202,20 @@ public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identifi
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-      public void modificarMantenientoCliente(ClasedeMantenimientoCliente man) throws Exception{
-        arrayMantenimiento = new ArrayList<ClasedeMantenimientoCliente>();
+      public void modificarCita(ClaseProcesodeAdministracióndeCitas cita) throws Exception{
+        arrayCitas = new ArrayList<ClaseProcesodeAdministracióndeCitas>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             ClasedeMantenimientoCliente mantenimiento1=null;
+             ClaseProcesodeAdministracióndeCitas cita1=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 mantenimiento1 = (ClasedeMantenimientoCliente) oLector.readObject(); 
-                 if(mantenimiento1.getIdentificador().equalsIgnoreCase(man.getIdentificador())) {
-                  mantenimiento1=man;
+                 cita1 =  (ClaseProcesodeAdministracióndeCitas) oLector.readObject(); 
+                 if(cita1.getNumeroCita().equalsIgnoreCase(cita.getNumeroCita())) {
+                  cita1=cita;
                  }
-                 arrayMantenimiento.add(mantenimiento1);
+                 arrayCitas.add(cita1);
              }  
         }
         catch(Exception ex){
@@ -235,17 +230,17 @@ public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identifi
     
     
     
-    public void eliminarMantenimientoEspec(String identificador) throws Exception {
-        arrayMantenimiento = new ArrayList<ClasedeMantenimientoCliente>();
+    public void eliminarCita(String identificador) throws Exception {
+        arrayCitas = new ArrayList<ClaseProcesodeAdministracióndeCitas>();
         try {            
             abrirArchivoInput();
-            ClasedeMantenimientoCliente mante = null;
+            ClaseProcesodeAdministracióndeCitas cita = null;
             //Pasa al ArrayList temporal todos los departamentos cuyo código es 
             //diferente al del departamento que se recibe como parámetro
             while(true){
-                 mante =  (ClasedeMantenimientoCliente) oLector.readObject();               
-                 if(!mante.getIdentificador().equalsIgnoreCase(identificador)) {
-                     arrayMantenimiento.add(mante);
+                 cita =(ClaseProcesodeAdministracióndeCitas) oLector.readObject();               
+                 if(!cita.getNumeroCita().equalsIgnoreCase(identificador)) {
+                     arrayCitas.add(cita);
                  }
              }                       
         }
@@ -266,15 +261,14 @@ public ClasedeMantenimientoCliente consultarMantenimientoCliente(String identifi
           if(archivoOriginal.exists()){
             archivoOriginal.delete();
           }  
-          if(!arrayMantenimiento.isEmpty()){
+          if(!arrayCitas.isEmpty()){
              abrirArchivoOutput();
           //Pasa todos los departamentos del ArrayList al archivo
-            for (ClasedeMantenimientoCliente mantenimiento : arrayMantenimiento) {
-             oEscritor.writeObject(mantenimiento);       
+            for (ClaseProcesodeAdministracióndeCitas cita : arrayCitas) {
+             oEscritor.writeObject(cita);       
             }     
           }
           cerrarArchivoOutput();
-    }  
+    } 
+    
 }
-
-
