@@ -3,9 +3,10 @@ package CapaLogicaNegocios;
 
 import PersistenciaNueva.PersistenciaCitas;
 import PersistenciaNueva.PersistenciaMantenimientoCliente;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ClaseCitas {
+public class ClaseCitas implements Serializable {
     
     String numeroCita;
     ClasedeMantenimientoCliente cliente ;

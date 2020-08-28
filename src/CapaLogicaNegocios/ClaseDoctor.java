@@ -1,7 +1,9 @@
 package CapaLogicaNegocios;
 
+import java.io.Serializable;
 
-public class ClaseDoctor {
+
+public class ClaseDoctor implements Serializable {
     
     String identificador; //SE DA
     int id; //Validarse que sea unico
@@ -25,6 +27,9 @@ public class ClaseDoctor {
         this.direccion = direccion;
     }
 
+    
+    
+    
     public String getIdentificador() {
         return identificador;
     }
