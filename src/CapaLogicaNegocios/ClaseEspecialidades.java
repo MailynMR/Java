@@ -3,7 +3,7 @@ package CapaLogicaNegocios;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import persistenciadeDatos.EspecialidadesDB;
+import Archivador.ArchivadorEspecialidadBD;
 
 public class ClaseEspecialidades  implements Serializable{
     
@@ -51,23 +51,23 @@ public class ClaseEspecialidades  implements Serializable{
     
         
     public static ClaseEspecialidades consultaEspecialidades(String codigo) throws Exception {
-        return EspecialidadesDB.getInstance().consultarEspecialidad(codigo);
+        return ArchivadorEspecialidadBD.getInstance().consultarEspecialidad(codigo);
     }
 
     public static void agregarEspecialidad(ClaseEspecialidades especialidad1) throws Exception {
-        EspecialidadesDB.getInstance().agregarEspecialidad(especialidad1);
+        ArchivadorEspecialidadBD.getInstance().agregarEspecialidad(especialidad1);
     }
 
     public static void eliminarEspecialidad(String codigo) throws Exception {
-        EspecialidadesDB.getInstance().eliminarEspecialidad(codigo);
+        ArchivadorEspecialidadBD.getInstance().eliminarEspecialidad(codigo);
     }
 
     public static void modificarEspecialiadad(ClaseEspecialidades especialidad1) throws Exception {
-        EspecialidadesDB.getInstance().modificarEspecialidad(especialidad1);
+        ArchivadorEspecialidadBD.getInstance().modificarEspecialidad(especialidad1);
     }
 
     public static ArrayList<ClaseEspecialidades> arrayEspecialidad() throws Exception {
-        return EspecialidadesDB.getInstance().listaEspecialidades();
+        return ArchivadorEspecialidadBD.getInstance().listaEspecialidades();
     }
 }
     

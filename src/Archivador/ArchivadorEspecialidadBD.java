@@ -1,56 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Archivador;
 
-package PersistenciaNueva;
 
-import CapaLogicaNegocios.ClaseCitas;
-import CapaLogicaNegocios.ClaseDoctor;
+import persistenciadeDatos.*;
+import CapaLogicaNegocios.ClaseEspecialidades;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import persistenciadeDatos.MiObjectOutputStream;
 
-public class PersistenciaDoctor {
-
-    private final String RUTA_ARCHIVO =
-            System.getProperty("user.dir") + "\\src\\Archivo\\DatosDelDoctor.txt";
-  
-    
-    //Objeto para abrir archivo y grabar 
+/**
+ *
+ * @author Mailyn Madrigal
+ */
+public class ArchivadorEspecialidadBD {
+     private final String RUTA_ARCHIVO = System.getProperty("user.dir")+ "\\src\\Archivo\\Especialidades.txt";
     private ObjectOutputStream oEscritor;
     private ObjectInputStream oLector;
-    
-    //para la entrada y salida de archivos, donde estan guardados
     private FileInputStream archivoEntrada;
     private FileOutputStream archivoSalida;
-    
-    
-    private ArrayList<ClaseDoctor> arrayDoctor;
+    private ArrayList<ClaseEspecialidades> arrayEspecialidades;
     
     //Instancia privada de la misma clase
     //implementa el patrón Singleton
-    private static  PersistenciaDoctor instance= null;
+    private static  ArchivadorEspecialidadBD instance= null;
    
     //Constructor privado, se implementa el patrón Singleton
 
-    public PersistenciaDoctor() {
+    public ArchivadorEspecialidadBD() {
     }
-
+    
     
     //Método público que retorna una única instancia de la 
     //clase, únicamnete se construye la primera vez.
-
-    public static PersistenciaDoctor getInstance() {
-        if (instance==null) {
-            instance=new PersistenciaDoctor();
+    public static ArchivadorEspecialidadBD getInstance(){
+        if(instance == null){
+            instance = new  ArchivadorEspecialidadBD();
         }
         return instance;
     }
     
     
-    
-    //OJO este tipo de comentario gernera la ayuda del metodo
     /**
      * Abre y retorna el archivo de datos, para escritura (de tipo output) al final del archivo
      * Tipo de Archivo: Secuencial.
@@ -91,6 +87,7 @@ public class PersistenciaDoctor {
       }      
     }
 
+   
     /**
      * Permite cerrar el archivo de datos que se abrió de salida
     */
@@ -123,64 +120,66 @@ public class PersistenciaDoctor {
      * Lista de todos los Departamentos que se encuentran en el archivo
      * @return ArrayList
      */
-     public ArrayList<ClaseDoctor> lista() throws Exception{
-         ArrayList arrayDoctor = new ArrayList();
-         //Ya que habrá bloque finally se debe encerrar el bloque try
-         //el throws del encabezado lanza la excepción del finally      
-         try {
-             abrirArchivoInput();
+     public ArrayList<ClaseEspecialidades> listaEspecialidades() throws Exception{
+        ArrayList arrayCiudades= new ArrayList();
+        //Ya que habrá bloque finally se debe encerrar el bloque try
+        //el throws del encabezado lanza la excepción del finally      
+      try {         
+            abrirArchivoInput();
              //Si no hay más datos que leer el método available retorna cero
-             while (true) {
-                 ClaseDoctor doc=  (ClaseDoctor) oLector.readObject();
-                 arrayDoctor.add(doc);
-             }
-         } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
-         catch (Exception ex) {
-
-         }
+            while(true){
+                ClaseEspecialidades especialidad1 = 
+                           (ClaseEspecialidades)oLector.readObject();                  
+                arrayCiudades.add(especialidad1);
+            }
+         } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
+        catch(Exception ex ){
+            
+       }
         finally{
            //Ocurra o no ocurra la excepción se cierra el archivo
            cerrarArchivoInput();   
-           return arrayDoctor;
+           return arrayCiudades;
         } 
+       
+        
     }
 
    //Busca y retorna el objeto Departamento de acuerdo al código que recibe como 
    //parámetro, en caso de que no lo encuentre retorna null
-public ClaseDoctor consultar(String numDoc)throws Exception {
-        ClaseDoctor doc;
-        ClaseDoctor buscarDoc = null;
+    public ClaseEspecialidades consultarEspecialidad(String codigoEspecialidad)throws Exception {
+        ClaseEspecialidades especialidad;
+        ClaseEspecialidades especialidadbuscada = null;
         try {
             abrirArchivoInput();
             //Si no hay más datos que leer el método available retorna cero
              while(true){
-                doc =  (ClaseDoctor) oLector.readObject();               
-                if(doc.getIdentificador().equalsIgnoreCase(numDoc)) {
-                } else {
-                    buscarDoc = doc;
+                especialidad = (ClaseEspecialidades)oLector.readObject();               
+                if(especialidad.getCodigo().equalsIgnoreCase(codigoEspecialidad)) {
+                    especialidadbuscada = especialidad;
                 }
              }            
         }catch(Exception e){
-            //no se pone nada
+            
         }
         finally{ //Suceda o no suceda la excepción se deben cerrar los archivos
              cerrarArchivoInput();    
-             return buscarDoc;
+             return especialidadbuscada;
         }       
     }
 
 
     /**
-     * Agregar un nuevo MantenimientodeEspecialidadesMédicas al final del archivo
-     * @param mantenimiento Objeto MantenimientodeEspecialidadesMédicas a agregar
+     * Agregar un nuevo Departamento al final del archivo
+     * @param departamento Objeto Departamento a agregar
      * @return void
      */
-    public  void agregar(ClaseDoctor doc)throws Exception {        
+    public  void agregarEspecialidad(ClaseEspecialidades especialidad)throws Exception {        
         try {
             this.abrirArchivoOutput();
             if (oEscritor != null) {
               //Ejecutar la escritura del objeto pDepartamento en el archivo
-               oEscritor.writeObject(doc);
+               oEscritor.writeObject(especialidad);
                oEscritor.flush();  //Envía el contenido del buffer al archivo
                oEscritor.reset();//Se requiere para cuando se reciben subclases de Departamento
             }
@@ -200,20 +199,20 @@ public ClaseDoctor consultar(String numDoc)throws Exception {
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-      public void modificar(ClaseDoctor doc) throws Exception{
-        arrayDoctor = new ArrayList<ClaseDoctor>();
+      public void modificarEspecialidad(ClaseEspecialidades especialidad) throws Exception{
+        arrayEspecialidades = new ArrayList<ClaseEspecialidades>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             ClaseDoctor doc1=null;
+             ClaseEspecialidades especialidad1=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 doc1 =   (ClaseDoctor) oLector.readObject(); 
-                 if(doc1.getIdentificador().equalsIgnoreCase(doc.getIdentificador())) {
-                  doc1=doc;
+                 especialidad1 = (ClaseEspecialidades)oLector.readObject(); 
+                 if(especialidad1.getCodigo().equalsIgnoreCase(especialidad.getCodigo())) {
+                  especialidad1=especialidad;
                  }
-                 arrayDoctor.add(doc1);
+                 arrayEspecialidades.add(especialidad1);
              }  
         }
         catch(Exception ex){
@@ -228,21 +227,21 @@ public ClaseDoctor consultar(String numDoc)throws Exception {
     
     
     
-    public void eliminar(String identificador) throws Exception {
-        arrayDoctor = new ArrayList<ClaseDoctor>();
+    public void eliminarEspecialidad(String codigoEspecialidad) throws Exception {
+        arrayEspecialidades = new ArrayList<ClaseEspecialidades>();
         try {            
             abrirArchivoInput();
-            ClaseDoctor doc = null;
-            //Pasa al ArrayList temporal todos los departamentos cuyo código es 
-            //diferente al del departamento que se recibe como parámetro
+            ClaseEspecialidades especialidad1 = null;
+            //Pasa al ArrayList temporal todos las ciudades cuyo código es 
+            //diferente al del codigo de ciudad  que se recibe como parámetro
             while(true){
-                 doc = (ClaseDoctor) oLector.readObject();               
-                 if(!doc.getIdentificador().equalsIgnoreCase(identificador)) {
-                     arrayDoctor.add(doc);
+                 especialidad1 = (ClaseEspecialidades)oLector.readObject();               
+                 if(!especialidad1.getCodigo().equalsIgnoreCase(codigoEspecialidad)) {
+                     arrayEspecialidades.add(especialidad1);
                  }
              }                       
-        }
-        catch(Exception e){   
+        }catch(Exception e){      
+           
         }
         finally{
             cerrarArchivoInput();
@@ -259,15 +258,14 @@ public ClaseDoctor consultar(String numDoc)throws Exception {
           if(archivoOriginal.exists()){
             archivoOriginal.delete();
           }  
-          if(!arrayDoctor.isEmpty()){
+          if(!arrayEspecialidades.isEmpty()){
              abrirArchivoOutput();
           //Pasa todos los departamentos del ArrayList al archivo
-            for (ClaseDoctor doc : arrayDoctor) {
-             oEscritor.writeObject(doc);       
+            for (ClaseEspecialidades ciudad : arrayEspecialidades) {
+             oEscritor.writeObject(ciudad);       
             }     
           }
           cerrarArchivoOutput();
     } 
-    
-    
+   
 }
