@@ -20,35 +20,30 @@ public class ArchivadorDoctorBD {
     }
     public static void eliminar(String nombreDoctor){       
          for (int i = 0; i < arrayDoctor.size(); i++) {
-            if(arrayDoctor.get(i).getProvincia().equals(nombreDoctor))
+            if(arrayDoctor.get(i).getNombre().equals(nombreDoctor))
                 arrayDoctor.remove(i);
         }
         
     }
-    public static boolean existe(String nombreProvincia){
-        for (Direccion direccion : arrayCiudades) {
-            if(direccion.getProvincia().equalsIgnoreCase(nombreProvincia))
+    public static boolean existe(String nombreDoctor){
+        for (ClaseDoctor doctor : arrayDoctor) {
+            if(doctor.getNombre().equalsIgnoreCase(nombreDoctor))
                 return true;
         }
         return false;
     }
      
-    public static int posicion(String nombreDireccion){
-        for (int i = 0; i < arrayCiudades.size(); i++) {
-            if(arrayCiudades.get(i).getProvincia().equalsIgnoreCase(nombreDireccion))
+    public static int posicion(String nombreDoctor){
+        for (int i = 0; i < arrayDoctor.size(); i++) {
+            if(arrayDoctor.get(i).getNombre().equalsIgnoreCase(nombreDoctor))
                 return i;
         }
         return -1;
     }
 
 
-//    public static ArrayList<Direccion> getArrayCiudades() {
-//        return arrayCiudades;
-//    }
-//    
-
-    public static ArrayList<Direccion> getArrayCiudades() {
-        return arrayCiudades;
+    public static ArrayList<ClaseDoctor> getArrayCiudades() {
+        return arrayDoctor;
     }
     
     
