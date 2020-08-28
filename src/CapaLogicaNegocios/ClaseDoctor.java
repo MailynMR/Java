@@ -1,6 +1,9 @@
 package CapaLogicaNegocios;
 
+import PersistenciaNueva.PersistenciaDoctor;
+import PersistenciaNueva.PersistenciaMantenimientoCliente;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class ClaseDoctor implements Serializable {
@@ -15,8 +18,12 @@ public class ClaseDoctor implements Serializable {
     String direccion; 
     //SE DEBEN CARGAR LOS DATOS DEL TXT
     // Distribución_Territorial_Costa_Rica.txt”
-
-    public ClaseDoctor( String identificador,int id, String nombre, String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
+    ClaseEspecialidades especialidad= null;
+    String especialidadDoc;
+    
+    
+    public ClaseDoctor( ClaseEspecialidades especialidad, String identificador,int id, String nombre, String apellido, int telefonoHabitacion, int telefonoOficina, int telefonoCelular, String direccion) {
+        especialidadDoc= this.especialidad.getEspecialidad();
         this.identificador=identificador;
         this.id = id;
         this.nombre = nombre;
@@ -25,9 +32,28 @@ public class ClaseDoctor implements Serializable {
         this.telefonoOficina = telefonoOficina;
         this.telefonoCelular = telefonoCelular;
         this.direccion = direccion;
+        
     }
 
-    
+    public static ClaseDoctor consultar(String codigo) throws Exception {
+    return PersistenciaDoctor.getInstance().consultar(codigo);
+    }
+
+    public static void agregar(ClasedeMantenimientoCliente mantenimiento) throws Exception {
+        PersistenciaMantenimientoCliente.getInstance().agregarMantenimientoCliente(mantenimiento);
+    }
+
+    public static void eliminar(String codigo) throws Exception {
+        PersistenciaMantenimientoCliente.getInstance().eliminarMantenimientoEspec(codigo);
+    }
+
+    public static void modificar(ClasedeMantenimientoCliente mante) throws Exception {
+        PersistenciaMantenimientoCliente.getInstance().modificarMantenientoCliente(mante);
+    }
+
+    public static ArrayList<ClasedeMantenimientoCliente> arrayDoctor() throws Exception {
+        return PersistenciaMantenimientoCliente.getInstance().listaMantenimiento();
+    }
     
     
     public String getIdentificador() {
