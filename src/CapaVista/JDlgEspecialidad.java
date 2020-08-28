@@ -3,7 +3,7 @@ package CapaVista;
 
 
 
-import CapaLogicaNegocios.ClaseMantenimientoEspecialidades;
+import CapaLogicaNegocios.ClaseEspecialidades;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 public class JDlgEspecialidad extends javax.swing.JDialog {
     private String codigoCiudad;
     private TipoMantenimientoEspecialidad tipoMantenimiento;
-    ClaseMantenimientoEspecialidades especialidadBuscar = null;
+    ClaseEspecialidades especialidadBuscar = null;
     public JDlgEspecialidad(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -148,7 +148,7 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
         jTxtCodigo.setText(codigoCiudad);
         jTxtEspecialidad.setText("");
         try {
-        especialidadBuscar = ClaseMantenimientoEspecialidades.consultaEspecialidades(codigoCiudad);
+        especialidadBuscar = ClaseEspecialidades.consultaEspecialidades(codigoCiudad);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al buscar la Especialidad\n"+
                 e.toString() + "\n" + e.getMessage());
@@ -166,7 +166,7 @@ public class JDlgEspecialidad extends javax.swing.JDialog {
        
         //Actualiza el Departamento static del FrmDepartamento
         //para que cuando regrese lo agregue o modifique
-        FrmMantenimientodeEspecialidades.setEspecialidadesMantenimiento(new ClaseMantenimientoEspecialidades(codigo, doctor, especialidad));
+        FrmMantenimientodeEspecialidades.setEspecialidadesMantenimiento(new ClaseEspecialidades(codigo, doctor, especialidad));
        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

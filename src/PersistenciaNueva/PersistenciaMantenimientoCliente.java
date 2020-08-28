@@ -1,7 +1,7 @@
 
 package PersistenciaNueva;
 
-import CapaLogicaNegocios.ClaseMantenimientoEspecialidades;
+import CapaLogicaNegocios.ClaseEspecialidades;
 import CapaLogicaNegocios.ClasedeMantenimientoCliente;
 import CapaLogicaNegocios.MantenimientodeEspecialidadesMédicas;
 import java.io.File;

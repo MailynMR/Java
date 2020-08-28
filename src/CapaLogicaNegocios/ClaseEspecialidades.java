@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import persistenciadeDatos.EspecialidadesDB;
 
-public class ClaseMantenimientoEspecialidades  implements Serializable{
+public class ClaseEspecialidades  implements Serializable{
     
     String codigo;
     String doctor;
     String especialidad;
 
-    public ClaseMantenimientoEspecialidades(String codigo, String doctor, String especialidad) {
+    public ClaseEspecialidades(String codigo, String doctor, String especialidad) {
         this.codigo += codigo;
         this.doctor = doctor;
         this.especialidad = especialidad;
@@ -50,11 +50,11 @@ public class ClaseMantenimientoEspecialidades  implements Serializable{
     }
     
         
-    public static ClaseMantenimientoEspecialidades consultaEspecialidades(String codigo) throws Exception {
+    public static ClaseEspecialidades consultaEspecialidades(String codigo) throws Exception {
         return EspecialidadesDB.getInstance().consultarEspecialidad(codigo);
     }
 
-    public static void agregarEspecialidad(ClaseMantenimientoEspecialidades especialidad1) throws Exception {
+    public static void agregarEspecialidad(ClaseEspecialidades especialidad1) throws Exception {
         EspecialidadesDB.getInstance().agregarEspecialidad(especialidad1);
     }
 
@@ -62,11 +62,11 @@ public class ClaseMantenimientoEspecialidades  implements Serializable{
         EspecialidadesDB.getInstance().eliminarEspecialidad(codigo);
     }
 
-    public static void modificarEspecialiadad(ClaseMantenimientoEspecialidades especialidad1) throws Exception {
+    public static void modificarEspecialiadad(ClaseEspecialidades especialidad1) throws Exception {
         EspecialidadesDB.getInstance().modificarEspecialidad(especialidad1);
     }
 
-    public static ArrayList<ClaseMantenimientoEspecialidades> arrayEspecialidad() throws Exception {
+    public static ArrayList<ClaseEspecialidades> arrayEspecialidad() throws Exception {
         return EspecialidadesDB.getInstance().listaEspecialidades();
     }
 }

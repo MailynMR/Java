@@ -1,6 +1,6 @@
 package PersistenciaNueva;
 
-import CapaLogicaNegocios.ClaseProcesodeAdministracióndeCitas;
+import CapaLogicaNegocios.ClaseCitas;
 import CapaLogicaNegocios.ClasedeMantenimientoCliente;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,7 +25,7 @@ public class PersistenciaCitas {
     private FileOutputStream archivoSalida;
     
     
-    private ArrayList<ClaseProcesodeAdministracióndeCitas> arrayCitas;
+    private ArrayList<ClaseCitas> arrayCitas;
     
     //Instancia privada de la misma clase
     //implementa el patrón Singleton
@@ -125,7 +125,7 @@ public class PersistenciaCitas {
      * Lista de todos los Departamentos que se encuentran en el archivo
      * @return ArrayList
      */
-     public ArrayList<ClaseProcesodeAdministracióndeCitas> listaCitas() throws Exception{
+     public ArrayList<ClaseCitas> listaCitas() throws Exception{
          ArrayList arrayCitas = new ArrayList();
          //Ya que habrá bloque finally se debe encerrar el bloque try
          //el throws del encabezado lanza la excepción del finally      
@@ -133,10 +133,10 @@ public class PersistenciaCitas {
              abrirArchivoInput();
              //Si no hay más datos que leer el método available retorna cero
              while (true) {
-                 ClaseProcesodeAdministracióndeCitas cita= (ClaseProcesodeAdministracióndeCitas) oLector.readObject();
+                 ClaseCitas cita= (ClaseCitas) oLector.readObject();
                  arrayCitas.add(cita);
              }
-         } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
+         } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
          catch (Exception ex) {
 
          }
@@ -149,14 +149,14 @@ public class PersistenciaCitas {
 
    //Busca y retorna el objeto Departamento de acuerdo al código que recibe como 
    //parámetro, en caso de que no lo encuentre retorna null
-public ClaseProcesodeAdministracióndeCitas consultarCita(String numCita)throws Exception {
-        ClaseProcesodeAdministracióndeCitas cita;
-        ClaseProcesodeAdministracióndeCitas buscarCita = null;
+public ClaseCitas consultarCita(String numCita)throws Exception {
+        ClaseCitas cita;
+        ClaseCitas buscarCita = null;
         try {
             abrirArchivoInput();
             //Si no hay más datos que leer el método available retorna cero
              while(true){
-                cita = (ClaseProcesodeAdministracióndeCitas) oLector.readObject();               
+                cita = (ClaseCitas) oLector.readObject();               
                 if(cita.getNumeroCita().equalsIgnoreCase(numCita)) {
                 } else {
                     buscarCita = cita;
@@ -177,7 +177,7 @@ public ClaseProcesodeAdministracióndeCitas consultarCita(String numCita)throws 
      * @param mantenimiento Objeto MantenimientodeEspecialidadesMédicas a agregar
      * @return void
      */
-    public  void agregarCita(ClaseProcesodeAdministracióndeCitas cita)throws Exception {        
+    public  void agregarCita(ClaseCitas cita)throws Exception {        
         try {
             this.abrirArchivoOutput();
             if (oEscritor != null) {
@@ -202,16 +202,16 @@ public ClaseProcesodeAdministracióndeCitas consultarCita(String numCita)throws 
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-      public void modificarCita(ClaseProcesodeAdministracióndeCitas cita) throws Exception{
-        arrayCitas = new ArrayList<ClaseProcesodeAdministracióndeCitas>();
+      public void modificarCita(ClaseCitas cita) throws Exception{
+        arrayCitas = new ArrayList<ClaseCitas>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             ClaseProcesodeAdministracióndeCitas cita1=null;
+             ClaseCitas cita1=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 cita1 =  (ClaseProcesodeAdministracióndeCitas) oLector.readObject(); 
+                 cita1 =  (ClaseCitas) oLector.readObject(); 
                  if(cita1.getNumeroCita().equalsIgnoreCase(cita.getNumeroCita())) {
                   cita1=cita;
                  }
@@ -231,14 +231,14 @@ public ClaseProcesodeAdministracióndeCitas consultarCita(String numCita)throws 
     
     
     public void eliminarCita(String identificador) throws Exception {
-        arrayCitas = new ArrayList<ClaseProcesodeAdministracióndeCitas>();
+        arrayCitas = new ArrayList<ClaseCitas>();
         try {            
             abrirArchivoInput();
-            ClaseProcesodeAdministracióndeCitas cita = null;
+            ClaseCitas cita = null;
             //Pasa al ArrayList temporal todos los departamentos cuyo código es 
             //diferente al del departamento que se recibe como parámetro
             while(true){
-                 cita =(ClaseProcesodeAdministracióndeCitas) oLector.readObject();               
+                 cita =(ClaseCitas) oLector.readObject();               
                  if(!cita.getNumeroCita().equalsIgnoreCase(identificador)) {
                      arrayCitas.add(cita);
                  }
@@ -264,7 +264,7 @@ public ClaseProcesodeAdministracióndeCitas consultarCita(String numCita)throws 
           if(!arrayCitas.isEmpty()){
              abrirArchivoOutput();
           //Pasa todos los departamentos del ArrayList al archivo
-            for (ClaseProcesodeAdministracióndeCitas cita : arrayCitas) {
+            for (ClaseCitas cita : arrayCitas) {
              oEscritor.writeObject(cita);       
             }     
           }

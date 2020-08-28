@@ -6,7 +6,7 @@
 package persistenciadeDatos;
 
 
-import CapaLogicaNegocios.ClaseMantenimientoEspecialidades;
+import CapaLogicaNegocios.ClaseEspecialidades;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,7 +24,7 @@ public class EspecialidadesDB {
     private ObjectInputStream oLector;
     private FileInputStream archivoEntrada;
     private FileOutputStream archivoSalida;
-    private ArrayList<ClaseMantenimientoEspecialidades> arrayEspecialidades;
+    private ArrayList<ClaseEspecialidades> arrayEspecialidades;
     
     //Instancia privada de la misma clase
     //implementa el patrón Singleton
@@ -119,7 +119,7 @@ public class EspecialidadesDB {
      * Lista de todos los Departamentos que se encuentran en el archivo
      * @return ArrayList
      */
-     public ArrayList<ClaseMantenimientoEspecialidades> listaEspecialidades() throws Exception{
+     public ArrayList<ClaseEspecialidades> listaEspecialidades() throws Exception{
         ArrayList arrayCiudades= new ArrayList();
         //Ya que habrá bloque finally se debe encerrar el bloque try
         //el throws del encabezado lanza la excepción del finally      
@@ -127,11 +127,11 @@ public class EspecialidadesDB {
             abrirArchivoInput();
              //Si no hay más datos que leer el método available retorna cero
             while(true){
-                ClaseMantenimientoEspecialidades especialidad1 = 
-                           (ClaseMantenimientoEspecialidades)oLector.readObject();                  
+                ClaseEspecialidades especialidad1 = 
+                           (ClaseEspecialidades)oLector.readObject();                  
                 arrayCiudades.add(especialidad1);
             }
-         } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
+         } //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws   //No se indica el catch ya que no se hará nada, solamente se lanzará por medio del throws  
         catch(Exception ex ){
             
        }
@@ -146,14 +146,14 @@ public class EspecialidadesDB {
 
    //Busca y retorna el objeto Departamento de acuerdo al código que recibe como 
    //parámetro, en caso de que no lo encuentre retorna null
-    public ClaseMantenimientoEspecialidades consultarEspecialidad(String codigoEspecialidad)throws Exception {
-        ClaseMantenimientoEspecialidades especialidad;
-        ClaseMantenimientoEspecialidades especialidadbuscada = null;
+    public ClaseEspecialidades consultarEspecialidad(String codigoEspecialidad)throws Exception {
+        ClaseEspecialidades especialidad;
+        ClaseEspecialidades especialidadbuscada = null;
         try {
             abrirArchivoInput();
             //Si no hay más datos que leer el método available retorna cero
              while(true){
-                especialidad = (ClaseMantenimientoEspecialidades)oLector.readObject();               
+                especialidad = (ClaseEspecialidades)oLector.readObject();               
                 if(especialidad.getCodigo().equalsIgnoreCase(codigoEspecialidad)) {
                     especialidadbuscada = especialidad;
                 }
@@ -173,7 +173,7 @@ public class EspecialidadesDB {
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-    public  void agregarEspecialidad(ClaseMantenimientoEspecialidades especialidad)throws Exception {        
+    public  void agregarEspecialidad(ClaseEspecialidades especialidad)throws Exception {        
         try {
             this.abrirArchivoOutput();
             if (oEscritor != null) {
@@ -198,16 +198,16 @@ public class EspecialidadesDB {
      * @param departamento Objeto Departamento a agregar
      * @return void
      */
-      public void modificarEspecialidad(ClaseMantenimientoEspecialidades especialidad) throws Exception{
-        arrayEspecialidades = new ArrayList<ClaseMantenimientoEspecialidades>();
+      public void modificarEspecialidad(ClaseEspecialidades especialidad) throws Exception{
+        arrayEspecialidades = new ArrayList<ClaseEspecialidades>();
         try {            
             abrirArchivoInput();            
              //Pasar todos los objetos del archivo al ArrayList temporal modificando el 
             //objeto que se recibe como parámetro de acuerdo al código
-             ClaseMantenimientoEspecialidades especialidad1=null;
+             ClaseEspecialidades especialidad1=null;
             //Si no hay más datos que leer el método available retorna cero
              while(true){//Si va a leer y no hay objeto Departamento se va por el catch
-                 especialidad1 = (ClaseMantenimientoEspecialidades)oLector.readObject(); 
+                 especialidad1 = (ClaseEspecialidades)oLector.readObject(); 
                  if(especialidad1.getCodigo().equalsIgnoreCase(especialidad.getCodigo())) {
                   especialidad1=especialidad;
                  }
@@ -227,14 +227,14 @@ public class EspecialidadesDB {
     
     
     public void eliminarEspecialidad(String codigoEspecialidad) throws Exception {
-        arrayEspecialidades = new ArrayList<ClaseMantenimientoEspecialidades>();
+        arrayEspecialidades = new ArrayList<ClaseEspecialidades>();
         try {            
             abrirArchivoInput();
-            ClaseMantenimientoEspecialidades especialidad1 = null;
+            ClaseEspecialidades especialidad1 = null;
             //Pasa al ArrayList temporal todos las ciudades cuyo código es 
             //diferente al del codigo de ciudad  que se recibe como parámetro
             while(true){
-                 especialidad1 = (ClaseMantenimientoEspecialidades)oLector.readObject();               
+                 especialidad1 = (ClaseEspecialidades)oLector.readObject();               
                  if(!especialidad1.getCodigo().equalsIgnoreCase(codigoEspecialidad)) {
                      arrayEspecialidades.add(especialidad1);
                  }
@@ -260,7 +260,7 @@ public class EspecialidadesDB {
           if(!arrayEspecialidades.isEmpty()){
              abrirArchivoOutput();
           //Pasa todos los departamentos del ArrayList al archivo
-            for (ClaseMantenimientoEspecialidades ciudad : arrayEspecialidades) {
+            for (ClaseEspecialidades ciudad : arrayEspecialidades) {
              oEscritor.writeObject(ciudad);       
             }     
           }

@@ -5,17 +5,17 @@ import PersistenciaNueva.PersistenciaCitas;
 import PersistenciaNueva.PersistenciaMantenimientoCliente;
 import java.util.ArrayList;
 
-public class ClaseProcesodeAdministracióndeCitas {
+public class ClaseCitas {
     
     String numeroCita;
     ClasedeMantenimientoCliente cliente ;
     int idCliente = cliente.getDOC_id();
     String fecha;
     String hora;
-    ClaseMantenimientoEspecialidades especialidad;
+    ClaseEspecialidades especialidad;
     String nombreDoctor= especialidad.getDoctor();
 
-    public ClaseProcesodeAdministracióndeCitas(String numeroCita, ClasedeMantenimientoCliente cliente, String fecha, String hora, ClaseMantenimientoEspecialidades especialidad) {
+    public ClaseCitas(String numeroCita, ClasedeMantenimientoCliente cliente, String fecha, String hora, ClaseEspecialidades especialidad) {
         this.numeroCita = numeroCita;
         this.cliente = cliente;
         this.fecha = fecha;
@@ -24,11 +24,11 @@ public class ClaseProcesodeAdministracióndeCitas {
     }
     // configuracion de botones
 
-    public static ClaseProcesodeAdministracióndeCitas consultarCita(String codigo) throws Exception {
+    public static ClaseCitas consultarCita(String codigo) throws Exception {
     return PersistenciaCitas.getInstance().consultarCita(codigo);
     }
 
-    public static void agregarCita(ClaseProcesodeAdministracióndeCitas mantenimiento) throws Exception {
+    public static void agregarCita(ClaseCitas mantenimiento) throws Exception {
         PersistenciaCitas.getInstance().agregarCita(mantenimiento);
     }
 
@@ -36,11 +36,11 @@ public class ClaseProcesodeAdministracióndeCitas {
         PersistenciaCitas.getInstance().eliminarCita(codigo);
     }
 
-    public static void modificarCita(ClaseProcesodeAdministracióndeCitas cita) throws Exception {
+    public static void modificarCita(ClaseCitas cita) throws Exception {
         PersistenciaCitas.getInstance().modificarCita(cita);
     }
 
-    public static ArrayList<ClaseProcesodeAdministracióndeCitas> arrayCita() throws Exception {
+    public static ArrayList<ClaseCitas> arrayCita() throws Exception {
         return PersistenciaCitas.getInstance().listaCitas();
     }
     
@@ -84,11 +84,11 @@ public class ClaseProcesodeAdministracióndeCitas {
         this.hora = hora;
     }
 
-    public ClaseMantenimientoEspecialidades getEspecialidad() {
+    public ClaseEspecialidades getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(ClaseMantenimientoEspecialidades especialidad) {
+    public void setEspecialidad(ClaseEspecialidades especialidad) {
         this.especialidad = especialidad;
     }
 
