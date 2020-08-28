@@ -39,20 +39,20 @@ public class ClaseDoctor implements Serializable {
     return PersistenciaDoctor.getInstance().consultar(codigo);
     }
 
-    public static void agregar(ClasedeMantenimientoCliente mantenimiento) throws Exception {
-        PersistenciaMantenimientoCliente.getInstance().agregarMantenimientoCliente(mantenimiento);
+    public static void agregar(ClaseDoctor doc) throws Exception {
+        PersistenciaDoctor.getInstance().agregar(doc);
     }
 
     public static void eliminar(String codigo) throws Exception {
-        PersistenciaMantenimientoCliente.getInstance().eliminarMantenimientoEspec(codigo);
+        PersistenciaDoctor.getInstance().eliminar(codigo);
     }
 
-    public static void modificar(ClasedeMantenimientoCliente mante) throws Exception {
-        PersistenciaMantenimientoCliente.getInstance().modificarMantenientoCliente(mante);
+    public static void modificar(ClaseDoctor doc) throws Exception {
+        PersistenciaDoctor.getInstance().modificar(doc);
     }
 
-    public static ArrayList<ClasedeMantenimientoCliente> arrayDoctor() throws Exception {
-        return PersistenciaMantenimientoCliente.getInstance().listaMantenimiento();
+    public static ArrayList<ClaseDoctor> arrayDoctor() throws Exception {
+        return PersistenciaDoctor.getInstance().lista();
     }
     
     
